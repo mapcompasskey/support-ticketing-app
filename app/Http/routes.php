@@ -20,6 +20,7 @@ Route::get('organizations', 'OrganizationsController@index');
 Route::get('organizations/create', 'OrganizationsController@create');
 Route::get('organizations/{id}', 'OrganizationsController@show');
 Route::get('organizations/{id}/edit', 'OrganizationsController@edit');
+Route::get('organizations/{id}/destroy', 'OrganizationsController@destroy');
 Route::post('organizations', 'OrganizationsController@store');
 Route::post('organizations/{id}', 'OrganizationsController@update');
 

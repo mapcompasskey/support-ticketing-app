@@ -4,10 +4,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Organization extends Model {
 
-	// mass-assignable attributes
+	/**
+	 * Attributes that can be mass-assigned
+	 *
+	 * @var array
+	 */
 	protected $fillable = [
 		'name',
 		'description'
 	];
+
+	/**
+	 * Scope query for ordering organizations by id
+	 *
+	 * @param $query
+	 */
+	public function scopeOrderById($query)
+	{
+		$query->orderBy('id', 'desc');
+	}
 
 }

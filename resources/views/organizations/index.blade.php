@@ -5,7 +5,7 @@
     <hr />
 
     <p>
-        <a class="btn btn-default" href="{{ action('OrganizationsController@create') }}">
+        <a class="btn btn-success" href="{{ action('OrganizationsController@create') }}">
             Create Organization
         </a>
     </p>
@@ -19,6 +19,7 @@
                 </a>
             </h2>
             <p>{{ $organization->description }}</p>
+            <hr />
         </div>
     @empty
         <p>There are no organizations.</p>
