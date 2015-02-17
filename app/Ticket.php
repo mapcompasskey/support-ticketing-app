@@ -24,6 +24,16 @@ class Ticket extends Model {
 	protected $dates = ['closed_at'];
 
 	/**
+	 * Scope query for ordering tickets by updated_at
+	 *
+	 * @param $query
+	 */
+	public function scopeOrderByUpdated($query)
+	{
+		$query->orderBy('updated_at', 'desc');
+	}
+
+	/**
 	 * A ticket is owned by an organization
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -13,6 +13,7 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li	class="active"><a href="/organizations">Organizations</a></li>
+                <li><a href="/tickets">Tickets</a></li>
             </ul>
             {{--<ul class="nav navbar-nav navbar-right">--}}
                 {{--<li>{!! link_to_action('ArticlesController@show', $latest->title, [$latest->id]) !!}</li>--}}

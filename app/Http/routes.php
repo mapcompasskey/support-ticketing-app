@@ -24,9 +24,9 @@ Route::get('organizations/{id}/destroy', 'OrganizationsController@destroy');
 Route::post('organizations', 'OrganizationsController@store');
 Route::post('organizations/{id}', 'OrganizationsController@update');
 
-//Route::get('/', 'WelcomeController@index');
-
-//Route::get('home', 'HomeController@index');
+// Tickets
+Route::get('tickets', 'TicketsController@index');
+Route::get('tickets/{id}', 'TicketsController@show');
 
 //Route::controllers([
 //	'auth' => 'Auth\AuthController',

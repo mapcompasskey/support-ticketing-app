@@ -23,6 +23,19 @@
             <h2>{{ $organization->name }}</h2>
             <p>{{ $organization->description }}</p>
         </div>
+
+        @unless ($organization->tickets->isEmpty())
+            <hr />
+            <h3>Tickets:</h3>
+            <hr />
+
+            @foreach ($organization->tickets as $ticket)
+                <h5>{{ $ticket->name }}</h5>
+                <p>{{ $ticket->description }}</p>
+                <hr />
+            @endforeach
+        @endunless
+
     @else
         <p>No organization was found.</p>
     @endif
