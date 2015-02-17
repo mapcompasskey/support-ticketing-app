@@ -11,9 +11,17 @@
 |
 */
 
-Route::get('', function() {
+Route::get('/', function() {
 	return view('index');
 });
+
+// Organizations
+Route::get('organizations', 'OrganizationsController@index');
+Route::get('organizations/create', 'OrganizationsController@create');
+Route::get('organizations/{id}', 'OrganizationsController@show');
+Route::get('organizations/{id}/edit', 'OrganizationsController@edit');
+Route::post('organizations', 'OrganizationsController@store');
+Route::post('organizations/{id}', 'OrganizationsController@update');
 
 //Route::get('/', 'WelcomeController@index');
 
