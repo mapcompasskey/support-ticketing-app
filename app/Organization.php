@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class Organization extends Model {
 
 	/**
-	 * Attributes that can be mass-assigned
+	 * The attributes that are mass assignable.
 	 *
 	 * @var array
 	 */
@@ -22,6 +22,16 @@ class Organization extends Model {
 	public function scopeOrderById($query)
 	{
 		$query->orderBy('id', 'desc');
+	}
+
+	/**
+	 * An organization can have many tickets.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function tickets()
+	{
+		return $this->hasMany('App\Ticket');
 	}
 
 }
