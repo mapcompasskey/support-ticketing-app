@@ -12,5 +12,25 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.less('app.less');
+    // compile SASS
+    // resources/assets/sass/app.scss -> resources/css/app.css
+    mix.sass('app.scss', 'resources/css');
+
+    // combine stylesheets together into a single file
+    // default root: resources/css/
+    // default output: public/css/all.css
+    mix.styles([
+        'libs/select2.min.css',
+        '../../public/css/fonts/roboto.css',
+        'app.css'
+    ], 'public/css/app.css');
+
+    // combine javascript files into a single file
+    // default root: resources/js/
+    // default output: public/js/all.js
+    mix.scripts([
+        'app.js',
+        'libs/jquery.min.js',
+        'libs/select2.min.js'
+    ], 'public/js/app.js');
 });
