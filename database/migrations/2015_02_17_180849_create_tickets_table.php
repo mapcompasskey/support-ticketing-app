@@ -17,6 +17,7 @@ class CreateTicketsTable extends Migration {
 			$table->increments('id');
 			$table->integer('organization_id')->unsigned();
 			$table->string('name');
+			$table->string('slug', 10)->unique();
 			$table->text('description');
 			$table->timestamp('closed_at');
 			$table->timestamps();

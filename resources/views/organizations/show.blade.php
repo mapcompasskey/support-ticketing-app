@@ -27,10 +27,13 @@
         @unless ($organization->tickets->isEmpty())
             <hr />
             <h3>Tickets:</h3>
-            <hr />
 
             @foreach ($organization->tickets as $ticket)
-                <h5>{{ $ticket->name }}</h5>
+                <h5>
+                    <a href="{{ action('TicketsController@show', $ticket->id) }}">
+                        {{ $ticket->name }}
+                    </a>
+                </h5>
                 <p>{{ $ticket->description }}</p>
                 <hr />
             @endforeach

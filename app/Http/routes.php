@@ -26,7 +26,12 @@ Route::post('organizations/{id}', 'OrganizationsController@update');
 
 // Tickets
 Route::get('tickets', 'TicketsController@index');
+Route::get('tickets/create', 'TicketsController@create');
 Route::get('tickets/{id}', 'TicketsController@show');
+Route::get('tickets/{id}/edit', 'TicketsController@edit');
+Route::get('tickets/{id}/destroy', 'TicketsController@destroy');
+Route::post('tickets', 'TicketsController@store');
+Route::post('tickets/{id}', 'TicketsController@update');
 
 //Route::controllers([
 //	'auth' => 'Auth\AuthController',

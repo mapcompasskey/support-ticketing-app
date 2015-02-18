@@ -12,6 +12,7 @@ class Ticket extends Model {
 	protected $fillable = [
 		'organization_id',
 		'name',
+		'slug',
 		'description',
 		'closed_at'
 	];
@@ -22,6 +23,16 @@ class Ticket extends Model {
 	 * @var array
 	 */
 	protected $dates = ['closed_at'];
+
+	/**
+	 * Set the closed_at attribute.
+	 *
+	 * @param $date
+	 */
+	public function setClosedAtAttribute($date)
+	{
+		$this->attributes['closed_at'] = Carbon::parse($date);
+	}
 
 	/**
 	 * Scope query for ordering tickets by updated_at
