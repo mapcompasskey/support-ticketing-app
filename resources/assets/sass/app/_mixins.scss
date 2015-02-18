@@ -1,0 +1,25 @@
+// Mixins
+
+// Named Responsive Breakpoints
+@mixin breakpoint($point) {
+    @if $point == papa-bear {
+        @media (max-width: 1200px) { @content; }
+    }
+    @else if $point == mama-bear {
+        @media (max-width: 900px) { @content; }
+    }
+    @else if $point == brother-bear {
+        @media (max-width: 700px) { @content; }
+    }
+    @else if $point == baby-bear {
+        @media (max-width: 500px)  { @content; }
+    }
+}
+
+// Disable Text Selection
+@mixin no-select() {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}

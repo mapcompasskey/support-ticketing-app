@@ -1,0 +1,70 @@
+// Forms
+
+// Reset fonts for relevant elements
+input,
+button,
+//select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+// Form groups
+.form-group {
+    margin-bottom: 15px;
+}
+
+// Form labels
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+// Common form controls
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    color: #555;
+    font-size: 20px;
+    line-height: 1.4;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    background-image: none;
+    @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075));
+    @include transition(border-color ease-in-out .15s, box-shadow ease-in-out .15s);
+
+    &:focus {
+        outline: 0;
+        border-color: #66afe9;
+        @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6));
+    }
+    &::-moz-placeholder {
+        color: #999;
+        opacity: 1;
+    }
+    &:-ms-input-placeholder {
+        color: #999;
+    }
+    &::-webkit-input-placeholder {
+        color: #999;
+    }
+    &[disabled],
+    &[readonly] {
+        cursor: false;
+        background-color: #eeeeee;
+        opacity: 1;
+    }
+}
+
+// Messages
+.alert-danger {
+    padding: 10px;
+    margin-bottom: 20px;
+    color: #a94442;
+    border-color: #dca7a7;
+    background-color: #f2dede;
+}

@@ -1,0 +1,54 @@
+// Scaffolding
+
+// Body
+html {
+    font-size: 20px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+body {
+    color: #333;
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: 300;
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    background-color: #fff;
+}
+
+// Links
+a {
+    color: #337ab7;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        color: #23527c;
+        text-decoration: underline;
+    }
+    &:focus {
+        outline: thin dotted;
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px;
+    }
+}
+
+// Images
+img {
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+// Horizontal rules
+hr {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+// Page content
+.content-container {
+    padding: 60px 20px;
+}
+.content-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}

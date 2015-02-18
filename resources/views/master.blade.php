@@ -13,9 +13,11 @@
 
 	@include('partials.nav')
 
-	<div class="container">
-		@include('partials.flash')
-		@yield('content')
+	<div class="content-container">
+		<div class="content-inner">
+			@include('partials.flash')
+			@yield('content')
+		</div>
 	</div>
 
 	<!-- javascript -->

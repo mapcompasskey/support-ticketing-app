@@ -1,0 +1,17 @@
+// Resets and helpers
+
+// Apply box-sizing to everything
+* {
+    @include box-sizing(border-box);
+}
+*:before,
+*:after {
+    @include box-sizing(border-box);
+}
+
+// Clear floated divisions hack
+.clearfix:after {
+    content: " ";
+    display: table;
+    clear: both;
+}

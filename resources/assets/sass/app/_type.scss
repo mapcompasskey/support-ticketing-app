@@ -1,0 +1,51 @@
+// Typography
+
+// Resets
+h1, h2, h3, h4, h5, h6, p, ul, blockquote {
+    margin-top: 0px;
+}
+h1, h2, h3, h4, p, ul, blockquote {
+    margin-bottom: 20px;
+}
+h1:last-child,
+h2:last-child,
+h3:last-child,
+h4:last-child,
+h5:last-child,
+h6:last-child,
+p:last-child,
+ul:last-child,
+blockquote:last-child {
+    margin-bottom: 0px;
+}
+
+// Headings
+h1 {
+    font-size: 50px;
+    font-weight: 500;
+}
+h2 {
+    font-size: 40px;
+    font-weight: 500;
+}
+h3 {
+    font-size: 30px;
+    font-weight: 500;
+}
+h4 {
+    font-size: 20px;
+    font-weight: 500;
+}
+h5 {
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: 500;
+}
+h6 {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+// Body text
+p {}

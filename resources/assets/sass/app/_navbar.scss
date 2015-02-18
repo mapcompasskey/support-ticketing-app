@@ -1,0 +1,66 @@
+// Navbars
+
+// Navigation bar
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    padding: 0 20px;
+    background-color: #3c3c3c;
+}
+.navbar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+// Brand/project name
+.navbar-header {
+    float: left;
+}
+.navbar-brand {
+    display: block;
+    float: left;
+    padding: 16px 15px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 1;
+
+    &:hover {
+        color: #fff;
+        text-decoration: none;
+        background-color: #333;
+    }
+}
+
+// Navbar nav links
+.navbar-nav {
+    float: left;
+    margin: 0;
+
+    ul {
+        list-style: none;
+    }
+    li {
+        float: left;
+
+        a {
+            display: block;
+            padding: 15px 15px;
+            color: #9d9d9d;
+            font-size: 20px;
+            line-height: 1;
+        }
+        a:hover {
+            text-decoration: none;
+            background-color: #333;
+        }
+    }
+    li.active {
+        a {
+            color: #fff;
+            background-color: #090909;
+        }
+    }
+}

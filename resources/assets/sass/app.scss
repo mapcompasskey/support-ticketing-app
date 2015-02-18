@@ -1,12 +1,21 @@
-$font-size-base: 20px;
-$btn-font-weight: 300;
-$font-family-sans-serif: "Roboto", Helvetica, Arial, sans-serif;
+@charset "UTF-8";
+//@import "mixins";
+@import "compass";
 
-@import "bootstrap";
+// Core variables and mixins
+@import "app/_variables";
+@import "app/_mixins";
 
-body {
-    padding-top: 60px;
-}
-body, label, .checkbox label {
-    font-weight: 300;
-}
+// Reset and dependencies
+@import "app/_normalize";
+@import "app/_helpers";
+
+// Core CSS
+@import "app/_scaffolding";
+@import "app/_type";
+@import "app/_grid";
+@import "app/_forms";
+@import "app/_buttons";
+
+// Components
+@import "app/_navbar";

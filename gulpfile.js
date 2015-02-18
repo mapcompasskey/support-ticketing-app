@@ -1,4 +1,5 @@
 var elixir = require('laravel-elixir');
+require('laravel-elixir-compass');
 
 /*
  |--------------------------------------------------------------------------
@@ -14,13 +15,20 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
     // compile SASS
     // resources/assets/sass/app.scss -> resources/css/app.css
-    mix.sass('app.scss', 'resources/css');
+    //mix.sass('app.scss', 'resources/css');
+
+    // compile SASS
+    mix.compass('app.scss', 'resources/css', {
+        sass: 'resources/assets/sass',
+        style: 'nested' // nested, compressed, expanded
+    });
 
     // combine stylesheets together into a single file
     // default root: resources/css/
     // default output: public/css/all.css
     mix.styles([
-        'libs/select2.min.css',
+        //'libs/select2.min.css',
+        '../../public/css/fonts/glyphicons.css',
         '../../public/css/fonts/roboto.css',
         'app.css'
     ], 'public/css/app.css');
@@ -31,6 +39,7 @@ elixir(function(mix) {
     mix.scripts([
         'app.js',
         'libs/jquery.min.js',
-        'libs/select2.min.js'
+        //'libs/select2.min.js'
     ], 'public/js/app.js');
+
 });

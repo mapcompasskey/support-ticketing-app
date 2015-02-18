@@ -1,18 +1,18 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
+<nav class="navbar">
+    <div class="navbar-inner clearfix">
 
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <!--button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-            </button>
+            </button-->
             <a class="navbar-brand" href="/">Support App</a>
         </div>
 
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
+        <div class="navbar-nav">
+            <ul>
                 <li	class="{{ (Request::segment(1) == 'organizations' ? 'active' : '') }}">
                     <a href="/organizations">Organizations</a>
                 </li>
