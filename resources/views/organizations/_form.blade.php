@@ -9,5 +9,7 @@
 </div>
 
 <div class="form-group">
-    {!! Form::submit($submitButtonText, ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit($submitButtonText, ['class' => 'btn ' . $submitButtonClass]) !!}
 </div>
+
+@include ('errors.form')

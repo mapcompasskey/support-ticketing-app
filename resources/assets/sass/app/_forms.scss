@@ -12,7 +12,7 @@ textarea {
 
 // Form groups
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: $margin-bottom-base;
 }
 
 // Form labels
@@ -61,10 +61,17 @@ label {
 }
 
 // Messages
+.alert-success {
+    padding: 10px;
+    margin-bottom: $margin-bottom-base;
+    color: #3c763d;
+    border: 1px solid #d6e9c6;
+    background-color: #dff0d8;
+}
 .alert-danger {
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: $margin-bottom-base;
     color: #a94442;
-    border-color: #dca7a7;
+    border: 1px solid #dca7a7;
     background-color: #f2dede;
 }

@@ -9,8 +9,6 @@
     <hr />
 
     {!! Form::model($ticket, ['action' => ['TicketsController@update', $ticket->id]]) !!}
-        @include ('tickets._form', ['submitButtonText' => 'Update Ticket'])
+        @include ('tickets._form', ['submitButtonText' => 'Update Ticket', 'submitButtonClass' => 'btn-blue'])
     {!! Form::close() !!}
-
-    @include ('errors.list')
 @stop

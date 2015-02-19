@@ -9,8 +9,6 @@
     <hr />
 
     {!! Form::open(['action' => 'TicketsController@store']) !!}
-        @include ('tickets._form', ['submitButtonText' => 'Add Ticket'])
+        @include ('tickets._form', ['submitButtonText' => 'Add Ticket', 'submitButtonClass' => 'btn-green'])
     {!! Form::close() !!}
-
-    @include ('errors.list')
 @stop

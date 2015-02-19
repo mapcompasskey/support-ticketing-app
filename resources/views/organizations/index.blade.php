@@ -5,7 +5,7 @@
     <hr />
 
     <p>
-        <a class="btn btn-success" href="{{ action('OrganizationsController@create') }}">
+        <a class="btn btn-green" href="{{ action('OrganizationsController@create') }}">
             Create Organization
         </a>
     </p>

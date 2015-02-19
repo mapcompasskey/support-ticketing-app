@@ -9,8 +9,6 @@
     <hr />
 
     {!! Form::open(['action' => 'OrganizationsController@store']) !!}
-        @include ('organizations._form', ['submitButtonText' => 'Add Organization'])
+        @include ('organizations._form', ['submitButtonText' => 'Add Organization', 'submitButtonClass' => 'btn-green'])
     {!! Form::close() !!}
-
-    @include ('errors.list')
 @stop

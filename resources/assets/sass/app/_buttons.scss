@@ -4,13 +4,14 @@
 .btn {
     cursor: pointer;
     display: inline-block;
-    margin-bottom: 0;
-    padding: 6px 12px;
+    margin: 0;
+    padding: 6px 24px;
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 500;
     line-height: 1.4;
     text-align: center;
     vertical-align: middle;
+    text-transform: uppercase;
     border: 1px solid transparent;
     background-image: none;
     white-space: nowrap;
@@ -50,157 +51,157 @@
 }
 
 // White button
-.btn-default {
+.btn-white {
     color: #333;
     border-color: #ccc;
     background-color: #fff;
 }
-.btn-default:hover,
-.btn-default:focus,
-.btn-default.focus,
-.btn-default:active,
-.btn-default.active {
+.btn-white:hover,
+.btn-white:focus,
+.btn-white.focus,
+.btn-white:active,
+.btn-white.active {
     color: #333;
     border-color: #adadad;
     background-color: #e6e6e6;
 }
-.btn-default:active,
-.btn-default.active {
+.btn-white:active,
+.btn-white.active {
     background-image: none;
 }
-.btn-default.disabled,
-.btn-default.disabled:hover,
-.btn-default.disabled:focus,
-.btn-default.disabled.focus,
-.btn-default.disabled:active,
-.btn-default.disabled.active,
-.btn-default[disabled],
-.btn-default[disabled]:hover,
-.btn-default[disabled]:focus,
-.btn-default[disabled].focus,
-.btn-default[disabled]:active,
-.btn-default[disabled].active {
+.btn-white.disabled,
+.btn-white.disabled:hover,
+.btn-white.disabled:focus,
+.btn-white.disabled.focus,
+.btn-white.disabled:active,
+.btn-white.disabled.active,
+.btn-white[disabled],
+.btn-white[disabled]:hover,
+.btn-white[disabled]:focus,
+.btn-white[disabled].focus,
+.btn-white[disabled]:active,
+.btn-white[disabled].active {
     border-color: #ccc;
     background-color: #fff;
 }
-.btn-default .badge {
+.btn-white .badge {
     color: #fff;
     background-color: #333;
 }
 
 // Blue button
-.btn-primary {
+.btn-blue {
     color: #fff;
     background-color: #337ab7;
     border-color: #2e6da4;
 }
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary.focus,
-.btn-primary:active,
-.btn-primary.active {
+.btn-blue:hover,
+.btn-blue:focus,
+.btn-blue.focus,
+.btn-blue:active,
+.btn-blue.active {
     color: #fff;
     border-color: #204d74;
     background-color: #286090;
 }
-.btn-primary:active,
-.btn-primary.active {
+.btn-blue:active,
+.btn-blue.active {
     background-image: none;
 }
-.btn-primary.disabled,
-.btn-primary.disabled:hover,
-.btn-primary.disabled:focus,
-.btn-primary.disabled.focus,
-.btn-primary.disabled:active,
-.btn-primary.disabled.active,
-.btn-primary[disabled],
-.btn-primary[disabled]:hover,
-.btn-primary[disabled]:focus,
-.btn-primary[disabled].focus,
-.btn-primary[disabled]:active,
-.btn-primary[disabled].active {
+.btn-blue.disabled,
+.btn-blue.disabled:hover,
+.btn-blue.disabled:focus,
+.btn-blue.disabled.focus,
+.btn-blue.disabled:active,
+.btn-blue.disabled.active,
+.btn-blue[disabled],
+.btn-blue[disabled]:hover,
+.btn-blue[disabled]:focus,
+.btn-blue[disabled].focus,
+.btn-blue[disabled]:active,
+.btn-blue[disabled].active {
     border-color: #2e6da4;
     background-color: #337ab7;
 }
-.btn-primary .badge {
+.btn-blue .badge {
     color: #337ab7;
     background-color: #fff;
 }
 
 // Green button
-.btn-success {
+.btn-green {
     color: #fff;
     border-color: #4cae4c;
     background-color: #5cb85c;
 }
-.btn-success:hover,
-.btn-success:focus,
-.btn-success.focus,
-.btn-success:active,
-.btn-success.active {
+.btn-green:hover,
+.btn-green:focus,
+.btn-green.focus,
+.btn-green:active,
+.btn-green.active {
     color: #fff;
     border-color: #398439;
     background-color: #449d44;
 }
-.btn-success:active,
-.btn-success.active {
+.btn-green:active,
+.btn-green.active {
     background-image: none;
 }
-.btn-success.disabled,
-.btn-success.disabled:hover,
-.btn-success.disabled:focus,
-.btn-success.disabled.focus,
-.btn-success.disabled:active,
-.btn-success.disabled.active,
-.btn-success[disabled],
-.btn-success[disabled]:hover,
-.btn-success[disabled]:focus,
-.btn-success[disabled].focus,
-.btn-success[disabled]:active,
-.btn-success[disabled].active {
+.btn-green.disabled,
+.btn-green.disabled:hover,
+.btn-green.disabled:focus,
+.btn-green.disabled.focus,
+.btn-green.disabled:active,
+.btn-green.disabled.active,
+.btn-green[disabled],
+.btn-green[disabled]:hover,
+.btn-green[disabled]:focus,
+.btn-green[disabled].focus,
+.btn-green[disabled]:active,
+.btn-green[disabled].active {
     border-color: #4cae4c;
     background-color: #5cb85c;
 }
-.btn-success .badge {
+.btn-green .badge {
     color: #5cb85c;
     background-color: #fff;
 }
 
 // Red button
-.btn-danger {
+.btn-red {
     color: #fff;
     border-color: #d43f3a;
     background-color: #d9534f;
 }
-.btn-danger:hover,
-.btn-danger:focus,
-.btn-danger.focus,
-.btn-danger:active,
-.btn-danger.active {
+.btn-red:hover,
+.btn-red:focus,
+.btn-red.focus,
+.btn-red:active,
+.btn-red.active {
     color: #fff;
     border-color: #ac2925;
     background-color: #c9302c;
 }
-.btn-danger:active,
-.btn-danger.active {
+.btn-red:active,
+.btn-red.active {
     background-image: none;
 }
-.btn-danger.disabled,
-.btn-danger.disabled:hover,
-.btn-danger.disabled:focus,
-.btn-danger.disabled.focus,
-.btn-danger.disabled:active,
-.btn-danger.disabled.active,
-.btn-danger[disabled],
-.btn-danger[disabled]:hover,
-.btn-danger[disabled]:focus,
-.btn-danger[disabled].focus,
-.btn-danger[disabled]:active,
-.btn-danger[disabled].active {
+.btn-red.disabled,
+.btn-red.disabled:hover,
+.btn-red.disabled:focus,
+.btn-red.disabled.focus,
+.btn-red.disabled:active,
+.btn-red.disabled.active,
+.btn-red[disabled],
+.btn-red[disabled]:hover,
+.btn-red[disabled]:focus,
+.btn-red[disabled].focus,
+.btn-red[disabled]:active,
+.btn-red[disabled].active {
     border-color: #d43f3a;
     background-color: #d9534f;
 }
-.btn-danger .badge {
+.btn-red .badge {
     color: #d9534f;
     background-color: #fff;
 }

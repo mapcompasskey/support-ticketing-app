@@ -9,10 +9,10 @@
     <hr />
 
     <p>
-        <a class="btn btn-primary" href="{{ action('TicketsController@edit', $ticket->id) }}">
+        <a class="btn btn-blue" href="{{ action('TicketsController@edit', $ticket->id) }}">
             Edit Ticket
         </a>
-        <a class="btn btn-danger" href="{{ action('TicketsController@destroy', $ticket->id) }}">
+        <a class="btn btn-red" href="{{ action('TicketsController@destroy', $ticket->id) }}">
             Delete
         </a>
     </p>

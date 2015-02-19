@@ -9,10 +9,10 @@
     <hr />
 
     <p>
-        <a class="btn btn-primary" href="{{ action('OrganizationsController@edit', $organization->id) }}">
+        <a class="btn btn-blue" href="{{ action('OrganizationsController@edit', $organization->id) }}">
             Edit Organization
         </a>
-        <a class="btn btn-danger" href="{{ action('OrganizationsController@destroy', $organization->id) }}">
+        <a class="btn btn-red" href="{{ action('OrganizationsController@destroy', $organization->id) }}">
             Delete
         </a>
     </p>

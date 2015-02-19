@@ -5,7 +5,7 @@
     <hr />
 
     <p>
-        <a class="btn btn-success" href="{{ action('TicketsController@create') }}">
+        <a class="btn btn-green" href="{{ action('TicketsController@create') }}">
             Create Ticket
         </a>
     </p>
