@@ -31,6 +31,19 @@ class TicketsController extends Controller {
 	}
 
 	/**
+	 * Store the organization's id then redirect to the new resource form.
+	 *
+	 * @param $id
+	 * @return Response
+	 */
+	public function createFromOrganization($id)
+	{
+		session()->flash('organization_id', $id);
+
+		return redirect('tickets/create');
+	}
+
+	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @param TicketsRequest $request
@@ -39,7 +52,7 @@ class TicketsController extends Controller {
 	public function store(TicketsRequest $request)
 	{
 		$input = $request->all();
-		$input['slug'] = strtolower(str_random(10)); // need to check if its been used
+		$input['slug'] = strtolower(str_random(10)); // need to check if its unique
 
 		$ticket = Ticket::create($input);
 		$name = $ticket->name;

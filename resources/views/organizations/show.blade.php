@@ -19,20 +19,20 @@
             <p>{{ $organization->description }}</p>
         </div>
 
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+        <hr />
+
+        <div class="pull-right">
+            <a class="btn btn-green" href="{{ action('TicketsController@createFromOrganization', $organization->id) }}">
+                Create Ticket
+            </a>
+        </div>
+
+        <h3>Tickets</h3>
+        <hr />
+
         @unless ($organization->tickets->isEmpty())
-            <p>&nbsp</p>
-            <p>&nbsp</p>
-            <hr />
-
-            <div class="pull-right">
-                <a class="btn btn-green" href="{{ action('TicketsController@create') }}">
-                    Create Ticket
-                </a>
-            </div>
-
-            <h3>Tickets</h3>
-            <hr />
-
             @foreach ($organization->tickets as $ticket)
                 <h5>
                     <a href="{{ action('TicketsController@show', $ticket->id) }}">
