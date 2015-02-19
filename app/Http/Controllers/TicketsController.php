@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Ticket;
-use App\Http\Requests\TicketsRequest;
+use App\Http\Requests\TicketRequest;
 use App\Http\Controllers\Controller;
 
 class TicketsController extends Controller {
@@ -46,10 +46,10 @@ class TicketsController extends Controller {
 	/**
 	 * Store a newly created resource in storage.
 	 *
-	 * @param TicketsRequest $request
+	 * @param TicketRequest $request
 	 * @return Response
 	 */
-	public function store(TicketsRequest $request)
+	public function store(TicketRequest $request)
 	{
 		$input = $request->all();
 		$input['slug'] = strtolower(str_random(10)); // need to check if its unique
@@ -94,10 +94,10 @@ class TicketsController extends Controller {
 	 * Update the specified resource in storage.
 	 *
 	 * @param  int  $id
-	 * @param TicketsRequest $request
+	 * @param TicketRequest $request
 	 * @return Response
 	 */
-	public function update($id, TicketsRequest $request)
+	public function update($id, TicketRequest $request)
 	{
 		$ticket = Ticket::findOrFail($id);
 
