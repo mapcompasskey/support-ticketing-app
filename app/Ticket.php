@@ -54,4 +54,14 @@ class Ticket extends Model {
 		return $this->belongsTo('App\Organization');
 	}
 
+	/**
+	 * A ticket can have many private messages.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function privateMessages()
+	{
+		return $this->hasMany('App\PrivateMessage');
+	}
+
 }

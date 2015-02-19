@@ -20,8 +20,12 @@
         <p>{{ $ticket->description }}</p>
 
         @if ($ticket->organization)
+            <p>&nbsp</p>
+            <p>&nbsp</p>
             <hr />
+
             <h3>Organization:</h3>
+            <hr />
 
             <h5>
                 <a href="{{ action('OrganizationsController@show', $ticket->organization->id) }}">
@@ -29,6 +33,31 @@
                 </a>
             </h5>
             <p>{{ $ticket->organization->description }}</p>
+        @endif
+
+        <p>&nbsp</p>
+        <p>&nbsp</p>
+        <hr />
+
+        {{--<div class="pull-right">--}}
+            {{--<a class="btn btn-green" href="{{ action('TicketsController@createFromOrganization', $organization->id) }}">--}}
+                {{--Create Ticket--}}
+            {{--</a>--}}
+        {{--</div>--}}
+
+        <h3>Private Messages</h3>
+        <hr />
+
+        @if ($ticket->privateMessages->isEmpty())
+            <p>There are no private messages.</p>
+        @else
+            @foreach ($ticket->privateMessages as $message)
+                <p>
+                    <em>{{ $message->updated_at->diffForHumans() }}</em>
+                </p>
+                <p>{{ $message->message }}</p>
+                <hr />
+            @endforeach
         @endif
 
     @else
