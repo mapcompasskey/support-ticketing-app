@@ -1,21 +1,16 @@
 @extends('master')
 
 @section('content')
-    <h1>
-        <a href="{{ action('TicketsController@index') }}">
-            Tickets
-        </a>
-    </h1>
-    <hr />
-
-    <p>
+    <div class="pull-right">
         <a class="btn btn-blue" href="{{ action('TicketsController@edit', $ticket->id) }}">
             Edit Ticket
         </a>
         <a class="btn btn-red" href="{{ action('TicketsController@destroy', $ticket->id) }}">
             Delete
         </a>
-    </p>
+    </div>
+
+    <h3>Tickets</h3>
     <hr />
 
     @if ($ticket)

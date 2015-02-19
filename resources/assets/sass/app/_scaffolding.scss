@@ -1,5 +1,14 @@
 // Scaffolding
 
+// Apply box-sizing to everything
+* {
+    @include box-sizing(border-box);
+}
+*:before,
+*:after {
+    @include box-sizing(border-box);
+}
+
 // Body
 html {
     font-size: 20px;
@@ -46,7 +55,7 @@ hr {
 
 // Page content
 .content-container {
-    padding: 60px 20px;
+    padding: 80px 20px;
 }
 .content-inner {
     max-width: 1200px;

@@ -1,11 +1,7 @@
 @extends('master')
 
 @section('content')
-    <h1>
-        <a href="{{ action('TicketsController@index') }}">
-            Ticket
-        </a>
-    </h1>
+    <h3>Tickets</h3>
     <hr />
 
     {!! Form::model($ticket, ['action' => ['TicketsController@update', $ticket->id]]) !!}

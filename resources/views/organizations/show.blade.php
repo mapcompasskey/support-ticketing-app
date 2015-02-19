@@ -1,21 +1,16 @@
 @extends('master')
 
 @section('content')
-    <h1>
-        <a href="{{ action('OrganizationsController@index') }}">
-            Organizations
-        </a>
-    </h1>
-    <hr />
-
-    <p>
+    <div class="pull-right">
         <a class="btn btn-blue" href="{{ action('OrganizationsController@edit', $organization->id) }}">
             Edit Organization
         </a>
         <a class="btn btn-red" href="{{ action('OrganizationsController@destroy', $organization->id) }}">
             Delete
         </a>
-    </p>
+    </div>
+
+    <h3>Organizations</h3>
     <hr />
 
     @if ($organization)
@@ -25,8 +20,18 @@
         </div>
 
         @unless ($organization->tickets->isEmpty())
+            <p>&nbsp</p>
+            <p>&nbsp</p>
             <hr />
-            <h3>Tickets:</h3>
+
+            <div class="pull-right">
+                <a class="btn btn-green" href="{{ action('TicketsController@create') }}">
+                    Create Ticket
+                </a>
+            </div>
+
+            <h3>Tickets</h3>
+            <hr />
 
             @foreach ($organization->tickets as $ticket)
                 <h5>

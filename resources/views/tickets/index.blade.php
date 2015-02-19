@@ -1,14 +1,13 @@
 @extends('master')
 
 @section('content')
-    <h1>Tickets</h1>
-    <hr />
-
-    <p>
+    <div class="pull-right">
         <a class="btn btn-green" href="{{ action('TicketsController@create') }}">
             Create Ticket
         </a>
-    </p>
+    </div>
+
+    <h3>Tickets</h3>
     <hr />
 
     @forelse ($tickets as $ticket)

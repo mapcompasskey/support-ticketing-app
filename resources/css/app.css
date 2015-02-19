@@ -219,31 +219,25 @@ td,
 th {
   padding: 0; }
 
-/* line 4, ../assets/sass/app/_helpers.scss */
+/* line 4, ../assets/sass/app/_scaffolding.scss */
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
-/* line 7, ../assets/sass/app/_helpers.scss */
+/* line 7, ../assets/sass/app/_scaffolding.scss */
 *:before,
 *:after {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
-/* line 13, ../assets/sass/app/_helpers.scss */
-.clearfix:after {
-  content: " ";
-  display: table;
-  clear: both; }
-
-/* line 4, ../assets/sass/app/_scaffolding.scss */
+/* line 13, ../assets/sass/app/_scaffolding.scss */
 html {
   font-size: 20px;
   -webkit-tap-highlight-color: transparent; }
 
-/* line 8, ../assets/sass/app/_scaffolding.scss */
+/* line 17, ../assets/sass/app/_scaffolding.scss */
 body {
   color: #333;
   font-size: 20px;
@@ -252,36 +246,36 @@ body {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   background-color: #fff; }
 
-/* line 18, ../assets/sass/app/_scaffolding.scss */
+/* line 27, ../assets/sass/app/_scaffolding.scss */
 a {
   color: #337ab7;
   text-decoration: none; }
-  /* line 22, ../assets/sass/app/_scaffolding.scss */
+  /* line 31, ../assets/sass/app/_scaffolding.scss */
   a:hover, a:focus {
     color: #23527c;
     text-decoration: underline; }
-  /* line 27, ../assets/sass/app/_scaffolding.scss */
+  /* line 36, ../assets/sass/app/_scaffolding.scss */
   a:focus {
     outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px; }
 
-/* line 35, ../assets/sass/app/_scaffolding.scss */
+/* line 44, ../assets/sass/app/_scaffolding.scss */
 img {
   max-width: 100%;
   vertical-align: middle; }
 
-/* line 41, ../assets/sass/app/_scaffolding.scss */
+/* line 50, ../assets/sass/app/_scaffolding.scss */
 hr {
   margin: 20px 0;
   border: 0;
   border-top: 1px solid #eee; }
 
-/* line 48, ../assets/sass/app/_scaffolding.scss */
+/* line 57, ../assets/sass/app/_scaffolding.scss */
 .content-container {
-  padding: 60px 20px; }
+  padding: 80px 20px; }
 
-/* line 51, ../assets/sass/app/_scaffolding.scss */
+/* line 60, ../assets/sass/app/_scaffolding.scss */
 .content-inner {
   max-width: 1200px;
   margin: 0 auto; }
@@ -768,3 +762,17 @@ label {
   .navbar-nav li.active a {
     color: #fff;
     background-color: #090909; }
+
+/* line 4, ../assets/sass/app/_utilities.scss */
+.clearfix:after {
+  content: " ";
+  display: table;
+  clear: both; }
+
+/* line 9, ../assets/sass/app/_utilities.scss */
+.pull-right {
+  float: right; }
+
+/* line 12, ../assets/sass/app/_utilities.scss */
+.pull-left {
+  float: left; }

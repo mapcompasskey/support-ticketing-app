@@ -7,7 +7,6 @@
 
 // Reset and dependencies
 @import "app/_normalize";
-@import "app/_helpers";
 
 // Core CSS
 @import "app/_scaffolding";
@@ -18,3 +17,6 @@
 
 // Components
 @import "app/_navbar";
+
+// Utility classes
+@import "app/_utilities";

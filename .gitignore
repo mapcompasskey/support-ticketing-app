@@ -3,3 +3,4 @@
 .env
 /.idea
 notes.txt
+/.sass-cache
