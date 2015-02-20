@@ -1,5 +1,6 @@
 <?php namespace App\Providers;
 
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider {
@@ -11,7 +12,23 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		//
+		// check if a new private message was just created
+		view()->composer('messages.private._list', function($view)
+		{
+			if (Session::get('new_private_message_id'))
+			{
+				if ($view->getData()['ticket'])
+				{
+					if ($view->getData()['ticket']->privateMessages->count())
+					{
+						if ($view->getData()['ticket']->privateMessages->last()->id == Session::get('new_private_message_id'))
+						{
+							$view->getData()['ticket']->privateMessages->last()->is_new = true;
+						}
+					}
+				}
+			}
+		});
 	}
 
 	/**

@@ -3,6 +3,7 @@
 use App\PrivateMessage;
 use App\Http\Requests\PrivateMessageRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class PrivateMessagesController extends Controller {
 
@@ -39,9 +40,9 @@ class PrivateMessagesController extends Controller {
 		$input = $request->all();
 		$input['user_id'] = 1;
 
-		PrivateMessage::create($input);
+		$message = PrivateMessage::create($input);
 
-		session()->flash('new_private_message', true);
+		Session::flash('new_private_message_id', $message->id);
 
 		return redirect("tickets/{$input['ticket_id']}#new-message");
 	}

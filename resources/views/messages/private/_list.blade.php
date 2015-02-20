@@ -6,8 +6,8 @@
     <h3>Private Messages</h3>
     <hr />
 
-    @forelse ($ticket->privateMessages as $key => $message)
-        <div class="private-message{{ (($key + 1) == count($ticket->privateMessages) ? ' new-message' : '') }}">
+    @forelse ($ticket->privateMessages as $message)
+        <div{{ $message->is_new ? ' id=new-message' : '' }} class="private-message{{ $message->is_new ? ' new-message' : '' }}">
             <p>
                 <em>{{ $message->updated_at->diffForHumans() }}</em>
             </p>

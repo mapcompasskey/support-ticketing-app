@@ -23,7 +23,7 @@
                 </a>
             </h2>
             <p>{{ $ticket->description }}</p>
-            <p>Private Message: {{ ($ticket->privateMessagesCount ? $ticket->privateMessagesCount->aggregate  : 0) }}</p>
+            <p>Private Message: {{ ($ticket->privateMessagesCount ? $ticket->privateMessagesCount->aggregate : 0) }}</p>
             <hr />
         </div>
     @empty
