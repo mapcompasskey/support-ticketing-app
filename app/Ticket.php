@@ -64,4 +64,16 @@ class Ticket extends Model {
 		return $this->hasMany('App\PrivateMessage');
 	}
 
+	/**
+	 * Gets the number of private message a ticket has.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 */
+	public function privateMessagesCount()
+	{
+		return $this->hasOne('App\PrivateMessage')
+			->selectRaw('ticket_id, count(*) as aggregate')
+			->groupBy('ticket_id');
+	}
+
 }

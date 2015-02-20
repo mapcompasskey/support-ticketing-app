@@ -34,4 +34,16 @@ class Organization extends Model {
 		return $this->hasMany('App\Ticket');
 	}
 
+	/**
+	 * Gets the number of tickets an organization has.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 */
+	public function ticketsCount()
+	{
+		return $this->hasOne('App\Ticket')
+			->selectRaw('organization_id, count(*) as aggregate')
+			->groupBy('organization_id');
+	}
+
 }

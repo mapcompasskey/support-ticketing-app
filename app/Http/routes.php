@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function() {
-	return view('index');
-});
-
 // Organizations
 Route::get('organizations', 'OrganizationsController@index');
 Route::get('organizations/create', 'OrganizationsController@create');
@@ -34,7 +30,15 @@ Route::get('tickets/{id}/destroy', 'TicketsController@destroy');
 Route::post('tickets', 'TicketsController@store');
 Route::post('tickets/{id}', 'TicketsController@update');
 
+// Private Messages
+Route::post('private-messages', 'PrivateMessagesController@store');
+
 //Route::controllers([
 //	'auth' => 'Auth\AuthController',
 //	'password' => 'Auth\PasswordController',
 //]);
+
+Event::listen('illuminate.query', function($sql)
+{
+	var_dump($sql);
+});

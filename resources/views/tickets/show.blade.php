@@ -35,30 +35,7 @@
             <p>{{ $ticket->organization->description }}</p>
         @endif
 
-        <p>&nbsp</p>
-        <p>&nbsp</p>
-        <hr />
-
-        {{--<div class="pull-right">--}}
-            {{--<a class="btn btn-green" href="{{ action('TicketsController@createFromOrganization', $organization->id) }}">--}}
-                {{--Create Ticket--}}
-            {{--</a>--}}
-        {{--</div>--}}
-
-        <h3>Private Messages</h3>
-        <hr />
-
-        @if ($ticket->privateMessages->isEmpty())
-            <p>There are no private messages.</p>
-        @else
-            @foreach ($ticket->privateMessages as $message)
-                <p>
-                    <em>{{ $message->updated_at->diffForHumans() }}</em>
-                </p>
-                <p>{{ $message->message }}</p>
-                <hr />
-            @endforeach
-        @endif
+        @include('messages.private._list')
 
     @else
         <p>No ticket was found.</p>

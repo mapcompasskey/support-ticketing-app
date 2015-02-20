@@ -23,9 +23,20 @@ class PrivateMessageRequest extends Request {
 	{
 		return [
 			'ticket_id' => 'required|integer',
-			'user_id' => 'required|integer',
 			'message' => 'required'
 		];
+	}
+
+	/**
+	 * Get the URL to redirect to on a validation error.
+	 *
+	 * @return string
+	 */
+	protected function getRedirectUrl()
+	{
+		$url = $this->redirector->getUrlGenerator();
+
+		return $url->previous() . '#message';
 	}
 
 }

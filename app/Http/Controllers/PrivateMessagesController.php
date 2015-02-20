@@ -31,11 +31,19 @@ class PrivateMessagesController extends Controller {
 	/**
 	 * Store a newly created resource in storage.
 	 *
+	 * @param PrivateMessageRequest $request
 	 * @return Response
 	 */
-	public function store()
+	public function store(PrivateMessageRequest $request)
 	{
-		//
+		$input = $request->all();
+		$input['user_id'] = 1;
+
+		PrivateMessage::create($input);
+
+		session()->flash('new_private_message', true);
+
+		return redirect("tickets/{$input['ticket_id']}#new-message");
 	}
 
 	/**

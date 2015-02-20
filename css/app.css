@@ -239,6 +239,7 @@ html {
 
 /* line 17, ../assets/sass/app/_scaffolding.scss */
 body {
+  padding-top: 60px;
   color: #333;
   font-size: 20px;
   line-height: 1.4;
@@ -246,36 +247,36 @@ body {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   background-color: #fff; }
 
-/* line 27, ../assets/sass/app/_scaffolding.scss */
+/* line 28, ../assets/sass/app/_scaffolding.scss */
 a {
   color: #337ab7;
   text-decoration: none; }
-  /* line 31, ../assets/sass/app/_scaffolding.scss */
+  /* line 32, ../assets/sass/app/_scaffolding.scss */
   a:hover, a:focus {
     color: #23527c;
     text-decoration: underline; }
-  /* line 36, ../assets/sass/app/_scaffolding.scss */
+  /* line 37, ../assets/sass/app/_scaffolding.scss */
   a:focus {
     outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px; }
 
-/* line 44, ../assets/sass/app/_scaffolding.scss */
+/* line 45, ../assets/sass/app/_scaffolding.scss */
 img {
   max-width: 100%;
   vertical-align: middle; }
 
-/* line 50, ../assets/sass/app/_scaffolding.scss */
+/* line 51, ../assets/sass/app/_scaffolding.scss */
 hr {
   margin: 20px 0;
   border: 0;
   border-top: 1px solid #eee; }
 
-/* line 57, ../assets/sass/app/_scaffolding.scss */
+/* line 58, ../assets/sass/app/_scaffolding.scss */
 .content-container {
   padding: 80px 20px; }
 
-/* line 60, ../assets/sass/app/_scaffolding.scss */
+/* line 61, ../assets/sass/app/_scaffolding.scss */
 .content-inner {
   max-width: 1200px;
   margin: 0 auto; }
@@ -762,6 +763,11 @@ label {
   .navbar-nav li.active a {
     color: #fff;
     background-color: #090909; }
+
+/* line 5, ../assets/sass/app/_messages.scss */
+.private-message.new-message {
+  padding: 15px;
+  background-color: #eaffeb; }
 
 /* line 4, ../assets/sass/app/_utilities.scss */
 .clearfix:after {

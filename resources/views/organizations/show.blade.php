@@ -32,17 +32,17 @@
         <h3>Tickets</h3>
         <hr />
 
-        @unless ($organization->tickets->isEmpty())
-            @foreach ($organization->tickets as $ticket)
-                <h5>
-                    <a href="{{ action('TicketsController@show', $ticket->id) }}">
-                        {{ $ticket->name }}
-                    </a>
-                </h5>
-                <p>{{ $ticket->description }}</p>
-                <hr />
-            @endforeach
-        @endunless
+        @forelse ($organization->tickets as $ticket)
+            <h5>
+                <a href="{{ action('TicketsController@show', $ticket->id) }}">
+                    {{ $ticket->name }}
+                </a>
+            </h5>
+            <p>{{ $ticket->description }}</p>
+            <hr />
+        @empty
+            <p>This organization currently has no tickets.</p>
+        @endforelse
 
     @else
         <p>No organization was found.</p>

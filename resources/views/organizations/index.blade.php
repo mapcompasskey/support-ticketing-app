@@ -18,6 +18,7 @@
                 </a>
             </h2>
             <p>{{ $organization->description }}</p>
+            <p>Tickets: {{ ($organization->ticketsCount ? $organization->ticketsCount->aggregate : 0) }}</p>
             <hr />
         </div>
     @empty
