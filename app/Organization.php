@@ -46,4 +46,14 @@ class Organization extends Model {
 			->groupBy('organization_id');
 	}
 
+	/**
+	 * An organization can have many contacts.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function contacts()
+	{
+		return $this->hasMany('App\Contact');
+	}
+
 }

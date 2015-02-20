@@ -1,3 +1,7 @@
+{{--
+    $message->is_new is determined by /app/Providers/AppServiceProvider.php
+--}}
+
 @if ($ticket)
     <p>&nbsp</p>
     <p>&nbsp</p>
@@ -19,7 +23,7 @@
         <p>There are no private messages.</p>
     @endforelse
 
-    {!! Form::open(['action' => 'PrivateMessagesController@store']) !!}
+    {!! Form::open(['action' => 'PrivateMessagesController@store', 'id' => 'private-message', ]) !!}
 
         <div class="form-group">
             {!! Form::label('message', 'Message:') !!}
@@ -34,6 +38,6 @@
 
     {!! Form::close() !!}
 
-    @include ('errors.form')
+    @include ('errors.form', ['errorBagName' => 'privateMessage'])
 
 @endif

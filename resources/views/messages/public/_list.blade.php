@@ -1,3 +1,7 @@
+{{--
+    $message->is_new is determined by /app/Providers/AppServiceProvider.php
+--}}
+
 @if ($ticket)
     <p>&nbsp</p>
     <p>&nbsp</p>
@@ -11,7 +15,11 @@
             <p>
                 <em>{{ $message->updated_at->diffForHumans() }}</em>
             </p>
-            <p>{{ $message->user->name }}</p>
+            @if ($message->user)
+                <p>{{ $message->user->name }}</p>
+            @elseif ($message->contact)
+                <p>{{ $message->contact->name }}</p>
+            @endif
             <p>{{ $message->message }}</p>
         </div>
         <hr />
@@ -19,7 +27,7 @@
         <p>There are no public messages.</p>
     @endforelse
 
-    {!! Form::open(['action' => 'PublicMessagesController@store']) !!}
+    {!! Form::open(['action' => 'PublicMessagesController@store', 'id' => 'public-message']) !!}
 
         <div class="form-group">
             {!! Form::label('message', 'Message:') !!}
@@ -34,6 +42,6 @@
 
     {!! Form::close() !!}
 
-    @include ('errors.form')
+    @include ('errors.form', ['errorBagName' => 'publicMessage'])
 
 @endif

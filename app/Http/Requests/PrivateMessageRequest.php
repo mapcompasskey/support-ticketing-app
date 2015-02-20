@@ -5,6 +5,13 @@ use App\Http\Requests\Request;
 class PrivateMessageRequest extends Request {
 
 	/**
+	 * The route to redirect to if validation fails.
+	 *
+	 * @var string
+	 */
+	protected $errorBag = 'privateMessage';
+
+	/**
 	 * Determine if the user is authorized to make this request.
 	 *
 	 * @return bool
@@ -36,7 +43,7 @@ class PrivateMessageRequest extends Request {
 	{
 		$url = $this->redirector->getUrlGenerator();
 
-		return $url->previous() . '#message';
+		return $url->previous() . '#private-message';
 	}
 
 }

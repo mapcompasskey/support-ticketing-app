@@ -46,4 +46,14 @@ class PublicMessage extends Model {
 		return $this->belongsTo('App\User');
 	}
 
+	/**
+	 * A message is owned by a contact
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function contact()
+	{
+		return $this->belongsTo('App\Contact');
+	}
+
 }
