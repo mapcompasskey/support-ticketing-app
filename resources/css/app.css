@@ -769,6 +769,11 @@ label {
   padding: 15px;
   background-color: #eaffeb; }
 
+/* line 13, ../assets/sass/app/_messages.scss */
+.public-message.new-message {
+  padding: 15px;
+  background-color: #eaffeb; }
+
 /* line 4, ../assets/sass/app/_utilities.scss */
 .clearfix:after {
   content: " ";

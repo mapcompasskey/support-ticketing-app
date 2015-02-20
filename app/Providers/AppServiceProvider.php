@@ -29,6 +29,24 @@ class AppServiceProvider extends ServiceProvider {
 				}
 			}
 		});
+
+		// check if a new public message was just created
+		view()->composer('messages.public._list', function($view)
+		{
+			if (Session::get('new_public_message_id'))
+			{
+				if ($view->getData()['ticket'])
+				{
+					if ($view->getData()['ticket']->publicMessages->count())
+					{
+						if ($view->getData()['ticket']->publicMessages->last()->id == Session::get('new_public_message_id'))
+						{
+							$view->getData()['ticket']->publicMessages->last()->is_new = true;
+						}
+					}
+				}
+			}
+		});
 	}
 
 	/**

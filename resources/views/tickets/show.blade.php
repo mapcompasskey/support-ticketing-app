@@ -36,6 +36,7 @@
         @endif
 
         @include('messages.private._list')
+        @include('messages.public._list')
 
     @else
         <p>No ticket was found.</p>

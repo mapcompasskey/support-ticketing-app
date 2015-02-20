@@ -13,7 +13,7 @@ class TicketsController extends Controller {
 	 */
 	public function index()
 	{
-		$tickets = Ticket::with('organization', 'privateMessagesCount')->orderByUpdated()->get();
+		$tickets = Ticket::with('organization', 'privateMessagesCount', 'publicMessagesCount')->orderByUpdated()->get();
 
 		return view('tickets.index', compact('tickets'));
 	}
@@ -70,7 +70,7 @@ class TicketsController extends Controller {
 	 */
 	public function show($id)
 	{
-		$ticket = Ticket::with('organization', 'privateMessages')->findOrFail($id);
+		$ticket = Ticket::with('organization', 'privateMessages', 'publicMessages')->findOrFail($id);
 
 		return view('tickets.show', compact('ticket'));
 	}

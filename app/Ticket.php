@@ -76,4 +76,26 @@ class Ticket extends Model {
 			->groupBy('ticket_id');
 	}
 
+	/**
+	 * A ticket can have many public messages.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function publicMessages()
+	{
+		return $this->hasMany('App\PublicMessage');
+	}
+
+	/**
+	 * Gets the number of public message a ticket has.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 */
+	public function publicMessagesCount()
+	{
+		return $this->hasOne('App\PublicMessage')
+			->selectRaw('ticket_id, count(*) as aggregate')
+			->groupBy('ticket_id');
+	}
+
 }

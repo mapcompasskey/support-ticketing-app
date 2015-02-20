@@ -33,6 +33,9 @@ Route::post('tickets/{id}', 'TicketsController@update');
 // Private Messages
 Route::post('private-messages', 'PrivateMessagesController@store');
 
+// Public Messages
+Route::post('public-messages', 'PublicMessagesController@store');
+
 //Route::controllers([
 //	'auth' => 'Auth\AuthController',
 //	'password' => 'Auth\PasswordController',
