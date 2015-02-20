@@ -11,6 +11,7 @@
             <p>
                 <em>{{ $message->updated_at->diffForHumans() }}</em>
             </p>
+            <p>{{ $message->user->name }}</p>
             <p>{{ $message->message }}</p>
         </div>
         <hr />

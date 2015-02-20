@@ -35,4 +35,14 @@ class PrivateMessage extends Model {
 		return $this->belongsTo('App\Ticket');
 	}
 
+	/**
+	 * A message is owned by a user
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function user()
+	{
+		return $this->belongsTo('App\User');
+	}
+
 }
