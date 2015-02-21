@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/', function() {
+	return view('index');
+});
+
 // Organizations
 Route::get('organizations', 'OrganizationsController@index');
 Route::get('organizations/create', 'OrganizationsController@create');
@@ -51,9 +55,9 @@ Route::post('contacts/{id}', 'ContactsController@update');
 //	'password' => 'Auth\PasswordController',
 //]);
 
-// check for N+1 query problems
-Event::listen('illuminate.query', function($sql)
-{
-	//var_dump($sql);
-	echo '<pre>' . print_r($sql, true) . '</pre>';
-});
+//// check for N+1 query problems
+//Event::listen('illuminate.query', function($sql)
+//{
+//	//var_dump($sql);
+//	echo '<pre>' . print_r($sql, true) . '</pre>';
+//});

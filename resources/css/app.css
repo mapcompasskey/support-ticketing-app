@@ -239,7 +239,6 @@ html {
 
 /* line 17, ../assets/sass/app/_scaffolding.scss */
 body {
-  padding-top: 60px;
   color: #333;
   font-size: 20px;
   line-height: 1.4;
@@ -247,36 +246,36 @@ body {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   background-color: #fff; }
 
-/* line 28, ../assets/sass/app/_scaffolding.scss */
+/* line 27, ../assets/sass/app/_scaffolding.scss */
 a {
   color: #337ab7;
   text-decoration: none; }
-  /* line 32, ../assets/sass/app/_scaffolding.scss */
+  /* line 31, ../assets/sass/app/_scaffolding.scss */
   a:hover, a:focus {
     color: #23527c;
     text-decoration: underline; }
-  /* line 37, ../assets/sass/app/_scaffolding.scss */
+  /* line 36, ../assets/sass/app/_scaffolding.scss */
   a:focus {
     outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px; }
 
-/* line 45, ../assets/sass/app/_scaffolding.scss */
+/* line 44, ../assets/sass/app/_scaffolding.scss */
 img {
   max-width: 100%;
   vertical-align: middle; }
 
-/* line 51, ../assets/sass/app/_scaffolding.scss */
+/* line 50, ../assets/sass/app/_scaffolding.scss */
 hr {
   margin: 20px 0;
   border: 0;
   border-top: 1px solid #eee; }
 
-/* line 58, ../assets/sass/app/_scaffolding.scss */
+/* line 57, ../assets/sass/app/_scaffolding.scss */
 .content-container {
   padding: 80px 20px; }
 
-/* line 61, ../assets/sass/app/_scaffolding.scss */
+/* line 60, ../assets/sass/app/_scaffolding.scss */
 .content-inner {
   max-width: 1200px;
   margin: 0 auto; }
@@ -707,24 +706,20 @@ label {
 
 /* line 4, ../assets/sass/app/_navbar.scss */
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
   width: 100%;
   padding: 0 20px;
   background-color: #3c3c3c; }
 
-/* line 13, ../assets/sass/app/_navbar.scss */
+/* line 9, ../assets/sass/app/_navbar.scss */
 .navbar-inner {
   max-width: 1200px;
   margin: 0 auto; }
 
-/* line 19, ../assets/sass/app/_navbar.scss */
+/* line 15, ../assets/sass/app/_navbar.scss */
 .navbar-header {
   float: left; }
 
-/* line 22, ../assets/sass/app/_navbar.scss */
+/* line 18, ../assets/sass/app/_navbar.scss */
 .navbar-brand {
   display: block;
   float: left;
@@ -732,34 +727,34 @@ label {
   color: #fff;
   font-size: 18px;
   line-height: 1; }
-  /* line 30, ../assets/sass/app/_navbar.scss */
+  /* line 26, ../assets/sass/app/_navbar.scss */
   .navbar-brand:hover {
     color: #fff;
     text-decoration: none;
     background-color: #333; }
 
-/* line 38, ../assets/sass/app/_navbar.scss */
+/* line 34, ../assets/sass/app/_navbar.scss */
 .navbar-nav {
   float: left;
   margin: 0; }
-  /* line 42, ../assets/sass/app/_navbar.scss */
+  /* line 38, ../assets/sass/app/_navbar.scss */
   .navbar-nav ul {
     list-style: none; }
-  /* line 45, ../assets/sass/app/_navbar.scss */
+  /* line 41, ../assets/sass/app/_navbar.scss */
   .navbar-nav li {
     float: left; }
-    /* line 48, ../assets/sass/app/_navbar.scss */
+    /* line 44, ../assets/sass/app/_navbar.scss */
     .navbar-nav li a {
       display: block;
       padding: 15px 15px;
       color: #9d9d9d;
       font-size: 20px;
       line-height: 1; }
-    /* line 55, ../assets/sass/app/_navbar.scss */
+    /* line 51, ../assets/sass/app/_navbar.scss */
     .navbar-nav li a:hover {
       text-decoration: none;
       background-color: #333; }
-  /* line 61, ../assets/sass/app/_navbar.scss */
+  /* line 57, ../assets/sass/app/_navbar.scss */
   .navbar-nav li.active a {
     color: #fff;
     background-color: #090909; }
