@@ -5,7 +5,7 @@ use App\Http\Requests\Request;
 class PrivateMessageRequest extends Request {
 
 	/**
-	 * The route to redirect to if validation fails.
+	 * The key to be used for the view error bag.
 	 *
 	 * @var string
 	 */

@@ -54,8 +54,8 @@ class Contact extends Model {
 	public function publicMessagesCount()
 	{
 		return $this->hasOne('App\PublicMessage')
-			->selectRaw('ticket_id, count(*) as aggregate')
-			->groupBy('ticket_id');
+			->selectRaw('contact_id, count(*) as aggregate')
+			->groupBy('contact_id');
 	}
 
 }
