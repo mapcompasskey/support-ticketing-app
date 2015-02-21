@@ -15,8 +15,7 @@
 
     @if ($organization)
         <div>
-            <h2>{{ $organization->name }}</h2>
-            <p>{{ $organization->description }}</p>
+            @include('organizations._blurb', ['view' => 'show'])
         </div>
 
         <p>&nbsp</p>

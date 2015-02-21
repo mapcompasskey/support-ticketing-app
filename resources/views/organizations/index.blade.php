@@ -12,13 +12,7 @@
 
     @forelse ($organizations as $organization)
         <div>
-            <h2>
-                <a href="{{ action('OrganizationsController@show', [$organization->id]) }}">
-                    {{ $organization->name }}
-                </a>
-            </h2>
-            <p>{{ $organization->description }}</p>
-            <p>Tickets: {{ ($organization->ticketsCount ? $organization->ticketsCount->aggregate : 0) }}</p>
+            @include('organizations._blurb', ['view' => 'index'])
             <hr />
         </div>
     @empty

@@ -14,30 +14,14 @@
     <hr />
 
     @if ($ticket)
-        <h2>{{ $ticket->name }}</h2>
-        <h5>ID: {{ $ticket->id }}</h5>
-        <h5>Slug: {{ $ticket->slug }}</h5>
-        <p>{{ $ticket->description }}</p>
-
+        @include('tickets._blurb', ['view' => 'show'])
+        
         @if ($ticket->organization)
-            <p>&nbsp</p>
-            <p>&nbsp</p>
-            <hr />
-
-            <h3>Organization:</h3>
-            <hr />
-
-            <h5>
-                <a href="{{ action('OrganizationsController@show', $ticket->organization->id) }}">
-                    {{ $ticket->organization->name }}
-                </a>
-            </h5>
-            <p>{{ $ticket->organization->description }}</p>
+            @include('organizations._blurb', ['organization' => $ticket->organization])
         @endif
 
         @include('messages.private._list')
         @include('messages.public._list')
-
     @else
         <p>No ticket was found.</p>
     @endif

@@ -14,25 +14,10 @@
     <hr />
 
     @if ($contact)
-        <h2>{{ $contact->name }}</h2>
-        @if ($contact->title) <p>{{ $contact->title }}</p> @endif
-        <p>{{ $contact->email }}</p>
-        <p>Public Messages: {{ ($contact->publicMessagesCount ? $contact->publicMessagesCount->aggregate : 0) }}</p>
+        @include('contacts._blurb', ['view' => 'show'])
 
         @if ($contact->organization)
-            <p>&nbsp</p>
-            <p>&nbsp</p>
-            <hr />
-
-            <h3>Organization:</h3>
-            <hr />
-
-            <h5>
-                <a href="{{ action('OrganizationsController@show', $contact->organization->id) }}">
-                    {{ $contact->organization->name }}
-                </a>
-            </h5>
-            <p>{{ $contact->organization->description }}</p>
+            @include('organizations._blurb', ['organization' => $contact->organization])
         @endif
     @else
         <p>No contact was found.</p>

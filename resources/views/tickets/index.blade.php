@@ -12,19 +12,7 @@
 
     @forelse ($tickets as $ticket)
         <div>
-            <h5>
-                <a href="{{ action('OrganizationsController@show', [$ticket->organization->id]) }}">
-                    {{ $ticket->organization->name }}
-                </a>
-            </h5>
-            <h2>
-                <a href="{{ action('TicketsController@show', [$ticket->id]) }}">
-                    {{ $ticket->name }}
-                </a>
-            </h2>
-            <p>{{ $ticket->description }}</p>
-            <p>Private Message: {{ ($ticket->privateMessagesCount ? $ticket->privateMessagesCount->aggregate : 0) }}</p>
-            <p>Public Message: {{ ($ticket->publicMessagesCount ? $ticket->publicMessagesCount->aggregate : 0) }}</p>
+            @include('tickets._blurb', ['view' => 'index'])
             <hr />
         </div>
     @empty
