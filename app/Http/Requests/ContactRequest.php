@@ -22,7 +22,7 @@ class ContactRequest extends Request {
 	public function rules()
 	{
 		return [
-			'organization_id' => 'required|integer',
+			'organization_id' => 'required|integer|not_in:' . env('DEFAULT_ORGANIZATION'),
 			'name' => 'required',
 			'email' => 'required|email'
 		];

@@ -13,7 +13,7 @@ class OrganizationsController extends Controller {
 	 */
 	public function index()
 	{
-		$organizations = Organization::with('ticketsCount', 'contactsCount')->orderById()->get();
+		$organizations = Organization::with('contactsCount', 'ticketsCount')->orderById()->get();
 
 		return view('organizations.index', compact('organizations'));
 	}

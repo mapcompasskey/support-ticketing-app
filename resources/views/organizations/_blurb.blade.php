@@ -8,8 +8,8 @@
             </a>
         </h2>
         <p>{{ $organization->description }}</p>
-        <p>Tickets: {{ ($organization->ticketsCount ? $organization->ticketsCount->aggregate : 0) }}</p>
         <p>Contacts: {{ ($organization->contactsCount ? $organization->contactsCount->aggregate : 0) }}</p>
+        <p>Tickets: {{ ($organization->ticketsCount ? $organization->ticketsCount->aggregate : 0) }}</p>
 
     @elseif (isset($view) && $view == 'show')
 

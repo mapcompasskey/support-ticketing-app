@@ -22,11 +22,13 @@
         <p>&nbsp</p>
         <hr />
 
-        <div class="pull-right">
-            <a class="btn btn-green" href="{{ action('ContactsController@create') }}">
-                Create Contact
-            </a>
-        </div>
+        @if ($organization->id != env('DEFAULT_ORGANIZATION'))
+            <div class="pull-right">
+                <a class="btn btn-green" href="{{ action('ContactsController@create') }}">
+                    Create Contact
+                </a>
+            </div>
+        @endif
 
         <h3>Contacts</h3>
         <hr />
@@ -39,7 +41,11 @@
             </h5>
             <hr />
         @empty
-            <p>This organization currently has no contacts.</p>
+            @if ($organization->id == env('DEFAULT_ORGANIZATION'))
+                <p>This organization cannot have any contacts.</p>
+            @else
+                <p>This organization currently has no contacts.</p>
+            @endif
         @endforelse
 
         <p>&nbsp</p>
