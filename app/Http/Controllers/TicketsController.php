@@ -85,7 +85,8 @@ class TicketsController extends Controller {
 	{
 		$ticket = Ticket::findOrFail($id);
 
-		$organizations = \App\Organization::lists('name', 'id');
+		//$organizations = \App\Organization::lists('name', 'id');
+		$organizations = $ticket->organization()->lists('name', 'id');
 
 		return view('tickets.edit', compact('ticket', 'organizations'));
 	}
@@ -101,7 +102,11 @@ class TicketsController extends Controller {
 	{
 		$ticket = Ticket::findOrFail($id);
 
-		$ticket->update($request->all());
+		// ensure the organization_id isn't changed
+		$input = $request->all();
+		$input['organization_id'] = $ticket->organization_id;
+
+		$ticket->update($input);
 
 		return redirect("tickets/{$id}");
 	}

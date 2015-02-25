@@ -85,7 +85,11 @@ class ContactsController extends Controller {
 	{
 		$contact = Contact::findOrFail($id);
 
-		$contact->update($request->all());
+		// ensure the organization_id isn't changed
+		$input = $request->all();
+		$input['organization_id'] = $contact->organization_id;
+
+		$contact->update($input);
 
 		return redirect("contacts/{$id}");
 	}
