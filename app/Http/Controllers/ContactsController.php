@@ -31,19 +31,6 @@ class ContactsController extends Controller {
 	}
 
 	/**
-	 * Store the organization's id then redirect to the new resource form.
-	 *
-	 * @param $id
-	 * @return Response
-	 */
-	public function createFromOrganization($id)
-	{
-		session()->flash('organization_id', $id);
-
-		return redirect('contacts/create');
-	}
-
-	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @param ContactRequest $request
@@ -121,7 +108,7 @@ class ContactsController extends Controller {
 		//return redirect('contacts');
 
 		// contacts can't be deleted, their information needs to be retained so there is a record to go along with the ticket
-		// only contacts that have been used can be deleted
+		// only contacts that haven't done anything can be deleted
 	}
 
 }

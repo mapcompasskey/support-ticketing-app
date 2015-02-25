@@ -43,7 +43,6 @@ Route::post('public-messages', 'PublicMessagesController@store');
 // Contacts
 Route::get('contacts', 'ContactsController@index');
 Route::get('contacts/create', 'ContactsController@create');
-Route::get('contacts/create/organization/{id}', 'ContactsController@createFromOrganization');
 Route::get('contacts/{id}', 'ContactsController@show');
 Route::get('contacts/{id}/edit', 'ContactsController@edit');
 Route::get('contacts/{id}/destroy', 'ContactsController@destroy');

@@ -47,6 +47,18 @@ class AppServiceProvider extends ServiceProvider {
 				}
 			}
 		});
+
+		// check if creating a contact from an organization's page
+		view()->composer('contacts._form', function($view)
+		{
+			$organization_id = 0;
+			$referrer = array_reverse(explode('/', $_SERVER['HTTP_REFERER']));
+			if (is_numeric($referrer[0]) && $referrer[1] == 'organizations')
+			{
+				$organization_id = $referrer[0];
+			}
+			$view->with('organization_id', $organization_id);
+		});
 	}
 
 	/**
