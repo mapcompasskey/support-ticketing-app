@@ -40,15 +40,6 @@ Route::post('private-messages', 'PrivateMessagesController@store');
 // Public Messages
 Route::post('public-messages', 'PublicMessagesController@store');
 
-// Contacts
-Route::get('contacts', 'ContactsController@index');
-Route::get('contacts/create', 'ContactsController@create');
-Route::get('contacts/{id}', 'ContactsController@show');
-Route::get('contacts/{id}/edit', 'ContactsController@edit');
-Route::get('contacts/{id}/destroy', 'ContactsController@destroy');
-Route::post('contacts', 'ContactsController@store');
-Route::post('contacts/{id}', 'ContactsController@update');
-
 //Route::controllers([
 //	'auth' => 'Auth\AuthController',
 //	'password' => 'Auth\PasswordController',

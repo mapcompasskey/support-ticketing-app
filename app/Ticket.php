@@ -103,9 +103,9 @@ class Ticket extends Model {
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
-	public function contacts()
-	{
-		return $this->hasMany('App\Contact');
-	}
+	//public function contacts()
+	//{
+	//	return $this->hasMany('App\Contact');
+	//}
 
 }

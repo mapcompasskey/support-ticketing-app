@@ -24,6 +24,10 @@ class CreatePrivateMessagesTable extends Migration {
 				->references('id')
 				->on('tickets')
 				->onDelete('cascade');
+
+			$table->foreign('user_id')
+				->references('id')
+				->on('users');
 		});
 	}
 

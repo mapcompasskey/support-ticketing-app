@@ -22,36 +22,6 @@
         <p>&nbsp</p>
         <hr />
 
-        @if ($organization->id != env('DEFAULT_ORGANIZATION'))
-            <div class="pull-right">
-                <a class="btn btn-green" href="{{ action('ContactsController@create') }}">
-                    Create Contact
-                </a>
-            </div>
-        @endif
-
-        <h3>Contacts</h3>
-        <hr />
-
-        @forelse ($organization->contacts as $contact)
-            <h5>
-                <a href="{{ action('ContactsController@show', $contact->id) }}">
-                    {{ $contact->name }}
-                </a>
-            </h5>
-            <hr />
-        @empty
-            @if ($organization->id == env('DEFAULT_ORGANIZATION'))
-                <p>This organization cannot have any contacts.</p>
-            @else
-                <p>This organization currently has no contacts.</p>
-            @endif
-        @endforelse
-
-        <p>&nbsp</p>
-        <p>&nbsp</p>
-        <hr />
-
         <div class="pull-right">
             <a class="btn btn-green" href="{{ action('TicketsController@createFromOrganization', $organization->id) }}">
                 Create Ticket

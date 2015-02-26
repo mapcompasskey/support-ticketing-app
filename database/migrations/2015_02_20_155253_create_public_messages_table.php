@@ -16,8 +16,9 @@ class CreatePublicMessagesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('ticket_id')->unsigned();
-			$table->integer('user_id')->unsigned();
-			$table->integer('contact_id')->unsigned();
+			$table->string('name');
+			$table->string('title');
+			$table->string('email');
 			$table->text('message');
 			$table->timestamps();
 

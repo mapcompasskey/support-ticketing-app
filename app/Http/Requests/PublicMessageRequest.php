@@ -30,6 +30,8 @@ class PublicMessageRequest extends Request {
 	{
 		return [
 			'ticket_id' => 'required|integer',
+			'name' => 'required',
+			'email' => 'required|email',
 			'message' => 'required'
 		];
 	}

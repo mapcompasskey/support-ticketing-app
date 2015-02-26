@@ -35,15 +35,11 @@ class PublicMessagesController extends Controller {
 	 */
 	public function store(PublicMessageRequest $request)
 	{
-		$input = $request->all();
-		$input['user_id'] = 1;
-		$input['contact_id'] = 0;
-
-		$message = PublicMessage::create($input);
+		$message = PublicMessage::create($request->all());
 
 		Session::flash('new_public_message_id', $message->id);
 
-		return redirect("tickets/{$input['ticket_id']}#new-message");
+		return redirect("tickets/{$message['ticket_id']}#new-message");
 	}
 
 	/**

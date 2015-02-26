@@ -46,26 +46,4 @@ class Organization extends Model {
 			->groupBy('organization_id');
 	}
 
-	/**
-	 * An organization can have many contacts.
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
-	 */
-	public function contacts()
-	{
-		return $this->hasMany('App\Contact');
-	}
-
-	/**
-	 * Gets the number of contacts an organization has.
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
-	 */
-	public function contactsCount()
-	{
-		return $this->hasOne('App\Contact')
-			->selectRaw('organization_id, count(*) as aggregate')
-			->groupBy('organization_id');
-	}
-
 }

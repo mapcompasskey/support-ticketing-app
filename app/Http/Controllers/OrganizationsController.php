@@ -13,7 +13,7 @@ class OrganizationsController extends Controller {
 	 */
 	public function index()
 	{
-		$organizations = Organization::with('contactsCount', 'ticketsCount')->orderById()->get();
+		$organizations = Organization::with('ticketsCount')->orderById()->get();
 
 		return view('organizations.index', compact('organizations'));
 	}
@@ -52,7 +52,7 @@ class OrganizationsController extends Controller {
 	 */
 	public function show($id)
 	{
-		$organization = Organization::with('tickets', 'contacts')->findOrFail($id);
+		$organization = Organization::with('tickets')->findOrFail($id);
 
 		return view('organizations.show', compact('organization'));
 	}

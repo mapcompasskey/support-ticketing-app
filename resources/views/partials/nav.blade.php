@@ -13,9 +13,6 @@
                 <li	class="{{ (Request::segment(1) == 'tickets' ? 'active' : '') }}">
                     <a href="/tickets">Tickets</a>
                 </li>
-                <li	class="{{ (Request::segment(1) == 'contacts' ? 'active' : '') }}">
-                    <a href="/contacts">Contacts</a>
-                </li>
             </ul>
         </div>
 

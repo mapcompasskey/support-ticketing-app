@@ -10,9 +10,10 @@ class PublicMessage extends Model {
 	 * @var array
 	 */
 	protected $fillable = [
-		'user_id',
-		'contact_id',
 		'ticket_id',
+		'name',
+		'title',
+		'email',
 		'message'
 	];
 
@@ -34,26 +35,6 @@ class PublicMessage extends Model {
 	public function ticket()
 	{
 		return $this->belongsTo('App\Ticket');
-	}
-
-	/**
-	 * A message is owned by a user
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-	 */
-	public function user()
-	{
-		return $this->belongsTo('App\User');
-	}
-
-	/**
-	 * A message is owned by a contact
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-	 */
-	public function contact()
-	{
-		return $this->belongsTo('App\Contact');
 	}
 
 }
