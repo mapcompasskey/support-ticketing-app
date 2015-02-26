@@ -31,7 +31,7 @@
 
         <div class="form-group">
             {!! Form::label('name', 'Name:') !!}
-            {!! Form::text('name', null, ['class' => 'form-control']) !!}
+            {!! Form::text('name', $userName, ['class' => 'form-control']) !!}
         </div>
 
         <div class="form-group">
@@ -41,7 +41,7 @@
 
         <div class="form-group">
             {!! Form::label('email', 'Email:') !!}
-            {!! Form::text('email', null, ['class' => 'form-control']) !!}
+            {!! Form::text('email', $userEmail, ['class' => 'form-control']) !!}
         </div>
 
         <div class="form-group">

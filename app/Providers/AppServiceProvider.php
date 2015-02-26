@@ -1,5 +1,6 @@
 <?php namespace App\Providers;
 
+use App\User;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
 
@@ -12,9 +13,10 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		// check if a new private message was just created
+		// when the view /messages/private/_list is loaded
 		view()->composer('messages.private._list', function($view)
 		{
+			// check if a new private message was just created
 			if (Session::get('new_private_message_id'))
 			{
 				if ($view->getData()['ticket'])
@@ -30,9 +32,10 @@ class AppServiceProvider extends ServiceProvider {
 			}
 		});
 
-		// check if a new public message was just created
+		// when the view /messages/public/_list is loaded
 		view()->composer('messages.public._list', function($view)
 		{
+			// check if a new public message was just created
 			if (Session::get('new_public_message_id'))
 			{
 				if ($view->getData()['ticket'])
@@ -46,11 +49,17 @@ class AppServiceProvider extends ServiceProvider {
 					}
 				}
 			}
+
+			// autopopulate public fields with user info
+			$userName = 'Jordan Wilson';
+			$userEmail = 'jordan@smallbox.com';
+			$view->with('userName', $userName)->with('userEmail', $userEmail);
 		});
 
-		// check if creating a contact from an organization's page
+		// when the view /contacts/_form is loaded
 		view()->composer('contacts._form', function($view)
 		{
+			// check if creating a contact from an organization's page
 			$organization_id = 0;
 			$referrer = array_reverse(explode('/', $_SERVER['HTTP_REFERER']));
 			if (is_numeric($referrer[0]) && $referrer[1] == 'organizations')
