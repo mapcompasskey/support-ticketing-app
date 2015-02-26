@@ -27,7 +27,6 @@ Route::post('organizations/{id}', 'OrganizationsController@update');
 // Tickets
 Route::get('tickets', 'TicketsController@index');
 Route::get('tickets/create', 'TicketsController@create');
-Route::get('tickets/create/organization/{id}', 'TicketsController@createFromOrganization');
 Route::get('tickets/{id}', 'TicketsController@show');
 Route::get('tickets/{id}/edit', 'TicketsController@edit');
 Route::get('tickets/{id}/destroy', 'TicketsController@destroy');

@@ -56,10 +56,10 @@ class AppServiceProvider extends ServiceProvider {
 			$view->with('userName', $userName)->with('userEmail', $userEmail);
 		});
 
-		// when the view /contacts/_form is loaded
-		view()->composer('contacts._form', function($view)
+		// when the view /tickets/_form is loaded
+		view()->composer('tickets._form', function($view)
 		{
-			// check if creating a contact from an organization's page
+			// check if creating a ticket from an organization's page
 			$organization_id = 0;
 			$referrer = array_reverse(explode('/', $_SERVER['HTTP_REFERER']));
 			if (is_numeric($referrer[0]) && $referrer[1] == 'organizations')

@@ -1,6 +1,6 @@
 <div class="form-group">
     {!! Form::label('organization_id', 'Organization:') !!}
-    {!! Form::select('organization_id', $organizations, Session::get('organization_id'), ['class' => 'form-control']) !!}
+    {!! Form::select('organization_id', $organizations, $organization_id, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">

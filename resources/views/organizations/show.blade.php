@@ -23,7 +23,7 @@
         <hr />
 
         <div class="pull-right">
-            <a class="btn btn-green" href="{{ action('TicketsController@createFromOrganization', $organization->id) }}">
+            <a class="btn btn-green" href="{{ action('TicketsController@create') }}">
                 Create Ticket
             </a>
         </div>

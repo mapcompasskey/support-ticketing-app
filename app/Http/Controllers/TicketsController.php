@@ -31,19 +31,6 @@ class TicketsController extends Controller {
 	}
 
 	/**
-	 * Store the organization's id then redirect to the new resource form.
-	 *
-	 * @param $id
-	 * @return Response
-	 */
-	public function createFromOrganization($id)
-	{
-		session()->flash('organization_id', $id);
-
-		return redirect('tickets/create');
-	}
-
-	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @param TicketRequest $request
