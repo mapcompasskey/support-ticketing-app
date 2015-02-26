@@ -20,17 +20,7 @@
                 @if ($message->title)- <em>{{ $message->title }}</em>@endif
                 - {{ $message->email }}
             </p>
-
-            <p>{{ $message->message }}</p>
-            {{--<p>{!! $message->message !!}</p>--}}
-            {{--<p>{!! nl2br($message->message) !!}</p>--}}
-            {{--<textarea class="form-control" rows="5" disabled>{{ $message->message }}</textarea>--}}
-            {{--<p>--}}
-            {{--@foreach (explode('<br>', nl2br($message->message, false)) as $line)--}}
-                {{--{{ $line }}<br>--}}
-            {{--@endforeach--}}
-            {{--</p>--}}
-
+            <p class="message">{!! nl2br(e($message->message)) !!}</p>
         </div>
         <hr />
     @empty

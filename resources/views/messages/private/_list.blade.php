@@ -16,7 +16,7 @@
                 <em>{{ $message->updated_at->diffForHumans() }}</em>
             </p>
             <p>{{ $message->user->name }}</p>
-            <p>{{ $message->message }}</p>
+            <p class="message">{!! nl2br(e($message->message)) !!}</p>
         </div>
         <hr />
     @empty

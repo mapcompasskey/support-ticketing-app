@@ -1155,11 +1155,31 @@ label {
 .private-message.new-message {
   padding: 15px;
   background-color: #eaffeb; }
+  /* line 9, ../assets/sass/app/_messages.scss */
+  .private-message.new-message .message {
+    padding: 20px;
+    border: 1px solid #c8ddc9;
+    background-color: #e0f4e1; }
+/* line 15, ../assets/sass/app/_messages.scss */
+.private-message .message {
+  padding: 20px;
+  border: 1px solid #eee;
+  background-color: #fcfcfc; }
 
-/* line 13, ../assets/sass/app/_messages.scss */
+/* line 24, ../assets/sass/app/_messages.scss */
 .public-message.new-message {
   padding: 15px;
   background-color: #eaffeb; }
+  /* line 28, ../assets/sass/app/_messages.scss */
+  .public-message.new-message .message {
+    padding: 20px;
+    border: 1px solid #c8ddc9;
+    background-color: #e0f4e1; }
+/* line 34, ../assets/sass/app/_messages.scss */
+.public-message .message {
+  padding: 20px;
+  border: 1px solid #eee;
+  background-color: #fcfcfc; }
 
 /* line 4, ../assets/sass/app/_utilities.scss */
 .clearfix:after {

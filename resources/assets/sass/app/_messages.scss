@@ -5,6 +5,17 @@
     &.new-message {
         padding: 15px;
         background-color: #eaffeb;
+
+        .message {
+            padding: 20px;
+            border: 1px solid #c8ddc9;
+            background-color: #e0f4e1;
+        }
+    }
+    .message {
+        padding: 20px;
+        border: 1px solid #eee;
+        background-color: #fcfcfc;
     }
 }
 
@@ -13,5 +24,16 @@
     &.new-message {
         padding: 15px;
         background-color: #eaffeb;
+
+        .message {
+            padding: 20px;
+            border: 1px solid #c8ddc9;
+            background-color: #e0f4e1;
+        }
+    }
+    .message {
+        padding: 20px;
+        border: 1px solid #eee;
+        background-color: #fcfcfc;
     }
 }
