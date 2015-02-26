@@ -13,8 +13,24 @@
     {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
 </div>
 
-<div class="form-group">
-    {!! Form::submit($submitButtonText, ['class' => 'btn ' . $submitButtonClass]) !!}
-</div>
+@if (isset($action) && $action == 'create')
+
+    <div class="form-group">
+        {!! Form::checkbox('notify', 1, null, ['id' => 'notify']) !!}
+        {!! Form::label('notify', 'Send Notification') !!}
+    </div>
+
+    <div class="form-group">
+        {!! Form::submit('Add Ticket', ['class' => 'btn btn-green']) !!}
+    </div>
+
+@elseif (isset($action) && $action == 'edit')
+
+    <div class="form-group">
+        {!! Form::submit('Update Ticket', ['class' => 'btn btn-blue']) !!}
+        <a class="btn btn-white" href="{{ action('TicketsController@show', $ticket->id) }}">Nevermind</a>
+    </div>
+
+@endif
 
 @include ('errors.form')

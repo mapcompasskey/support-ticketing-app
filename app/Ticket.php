@@ -98,14 +98,4 @@ class Ticket extends Model {
 			->groupBy('ticket_id');
 	}
 
-	/**
-	 * A ticket can have many contacts.
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
-	 */
-	//public function contacts()
-	//{
-	//	return $this->hasMany('App\Contact');
-	//}
-
 }

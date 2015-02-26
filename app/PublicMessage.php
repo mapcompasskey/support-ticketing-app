@@ -18,6 +18,24 @@ class PublicMessage extends Model {
 	];
 
 	/**
+	 * Accessor for the message attribute.
+	 *
+	 * @param $message
+	 * @return string
+	 */
+	//public function getMessageAttribute($message)
+	//{
+	//	//$message = str_replace("\r\n", "<br />", $message);
+	//	$str = '';
+	//	$arr = explode('<br>', nl2br($message, false));
+	//	foreach ($arr as $line)
+	//	{
+	//		$str .= $line . '';
+	//	}
+	//	return $message;
+	//}
+
+	/**
 	 * Scope query for ordering messages by created_at
 	 *
 	 * @param $query

@@ -61,10 +61,12 @@ class AppServiceProvider extends ServiceProvider {
 		{
 			// check if creating a ticket from an organization's page
 			$organization_id = 0;
-			$referrer = array_reverse(explode('/', $_SERVER['HTTP_REFERER']));
-			if (is_numeric($referrer[0]) && $referrer[1] == 'organizations')
+			if (isset($_SERVER['HTTP_REFERER']))
 			{
-				$organization_id = $referrer[0];
+				$referrer = array_reverse(explode('/', $_SERVER['HTTP_REFERER']));
+				if (is_numeric($referrer[0]) && $referrer[1] == 'organizations') {
+					$organization_id = $referrer[0];
+				}
 			}
 			$view->with('organization_id', $organization_id);
 		});

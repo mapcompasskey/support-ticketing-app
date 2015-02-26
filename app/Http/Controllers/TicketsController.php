@@ -46,7 +46,25 @@ class TicketsController extends Controller {
 
 		session()->flash('flash_message', 'The ticket "' . $name . '" has been created.');
 
+		if ($input['notify'] == 1)
+		{
+			return redirect("tickets/{$ticket->id}/notify");
+		}
+
 		return redirect('tickets');
+	}
+
+	/**
+	 * Display the specified resource with the notification form.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function notify($id)
+	{
+		$ticket = Ticket::with('organization')->findOrFail($id);
+
+		return view('tickets.notify', compact('ticket'));
 	}
 
 	/**
