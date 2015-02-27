@@ -7,7 +7,7 @@
 	<title>SmallBox Support Ticketing System</title>
 
 	<!-- stylesheet -->
-	<link rel="stylesheet" href="/css/app.css">
+	@include('partials._styles')
 </head>
 <body>
 
@@ -20,10 +20,10 @@
 		</div>
 	</div>
 
-	<!-- javascript -->
-	<script src="/js/app.js"></script>
-
 	@yield('footer')
+
+	<!-- javascript -->
+	@include('partials._scripts')
 
 </body>
 </html>

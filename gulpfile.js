@@ -13,33 +13,45 @@ require('laravel-elixir-compass');
  */
 
 elixir(function(mix) {
-    // compile SASS
-    // resources/assets/sass/app.scss -> resources/css/app.css
-    //mix.sass('app.scss', 'resources/css');
 
-    // compile SASS
-    mix.compass('app.scss', 'resources/css', {
-        sass: 'resources/assets/sass',
-        style: 'nested' // nested, compressed, expanded
-    });
+    // if running "glup --production"
+    var inProduction = elixir.config.production;
 
-    // combine stylesheets together into a single file
-    // default root: resources/css/
-    // default output: public/css/all.css
-    mix.styles([
-        //'libs/select2.min.css',
-        '../../public/css/fonts/glyphicons.css',
-        '../../public/css/fonts/roboto.css',
-        'app.css'
-    ], 'public/css/app.css');
+    // If not production, just update SASS files
+    if ( ! inProduction)
+    {
+        // compile SASS
+        // resources/assets/sass/app.scss -> public/css/app.css
+        mix.compass('app.scss', 'public/css', {
+            sass: 'resources/assets/sass',
+            style: 'expanded'
+        });
+    }
 
-    // combine javascript files into a single file
-    // default root: resources/js/
-    // default output: public/js/all.js
-    mix.scripts([
-        'app.js',
-        'libs/jquery.min.js',
-        //'libs/select2.min.js'
-    ], 'public/js/app.js');
+    // Else, combine and minify all CSS and JS files
+    else
+    {
+        // Compile SASS
+        // resources/assets/sass/app.scss -> resources/css/app.css
+        mix.compass('app.scss', 'resources/css', {
+            sass: 'resources/assets/sass',
+            style: 'compressed'
+        });
+
+        // Combine stylesheets
+        // resources/css/[...] -> public/css/app.min.css
+        mix.styles([
+            '../../public/css/fonts/glyphicons.css',
+            '../../public/css/fonts/roboto.css',
+            'app.css'
+        ], 'public/css/app.min.css');
+
+        // Combine javascript files
+        // public/js/[...] -> public/js/app.min.js
+        mix.scripts([
+            'libs/jquery.min.js',
+            'app.js'
+        ], 'public/js/app.min.js', 'public/js');
+    }
 
 });
