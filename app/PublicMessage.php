@@ -28,6 +28,16 @@ class PublicMessage extends Model {
 	}
 
 	/**
+	 * Scope query for getting distinct contacts from messages
+	 *
+	 * @param $query
+	 */
+	public function scopeDistinctContacts($query)
+	{
+		$query->select('ticket_id', 'email')->groupBy('email')->orderBy('created_at', 'asc');
+	}
+
+	/**
 	 * A message is owned by a ticket
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -45,9 +45,9 @@ Route::post('public-messages', 'PublicMessagesController@store');
 //	'password' => 'Auth\PasswordController',
 //]);
 
-//// check for N+1 query problems
-//Event::listen('illuminate.query', function($sql)
-//{
-//	//var_dump($sql);
-//	echo '<pre>' . print_r($sql, true) . '</pre>';
-//});
+// check for N+1 query problems
+Event::listen('illuminate.query', function($sql)
+{
+	//var_dump($sql);
+	echo '<pre>' . print_r($sql, true) . '</pre>';
+});

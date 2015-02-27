@@ -61,7 +61,7 @@ class Ticket extends Model {
 	 */
 	public function privateMessages()
 	{
-		return $this->hasMany('App\PrivateMessage');
+		return $this->hasMany('App\PrivateMessage')->orderByCreated();
 	}
 
 	/**
@@ -83,7 +83,17 @@ class Ticket extends Model {
 	 */
 	public function publicMessages()
 	{
-		return $this->hasMany('App\PublicMessage');
+		return $this->hasMany('App\PublicMessage')->orderByCreated();
+	}
+
+	/**
+	 * A ticket can have many contacts from public messages.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function publicMessagesContacts()
+	{
+		return $this->hasMany('App\PublicMessage')->distinctContacts();
 	}
 
 	/**
