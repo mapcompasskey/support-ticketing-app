@@ -27,36 +27,6 @@
         <p>There are no public messages.</p>
     @endforelse
 
-    {!! Form::open(['action' => 'PublicMessagesController@store', 'id' => 'public-message']) !!}
-
-        <div class="form-group">
-            {!! Form::label('name', 'Name:') !!}
-            {!! Form::text('name', $userName, ['class' => 'form-control']) !!}
-        </div>
-
-        <div class="form-group">
-            {!! Form::label('title', 'Title:') !!}
-            {!! Form::text('title', null, ['class' => 'form-control']) !!}
-        </div>
-
-        <div class="form-group">
-            {!! Form::label('email', 'Email:') !!}
-            {!! Form::text('email', $userEmail, ['class' => 'form-control']) !!}
-        </div>
-
-        <div class="form-group">
-            {!! Form::label('message', 'Message:') !!}
-            {!! Form::textarea('message', null, ['class' => 'form-control']) !!}
-        </div>
-
-        <div class="form-group">
-            {!! Form::submit('Add New Public Message', ['class' => 'btn btn-blue']) !!}
-        </div>
-
-        {!! Form::hidden('ticket_id', $ticket->id) !!}
-
-    {!! Form::close() !!}
-
-    @include ('errors.form', ['errorBagName' => 'publicMessage'])
+    @include ('messages.public._form', ['action' => 'list'])
 
 @endif

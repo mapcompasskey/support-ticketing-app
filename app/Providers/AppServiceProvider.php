@@ -49,10 +49,22 @@ class AppServiceProvider extends ServiceProvider {
 					}
 				}
 			}
+		});
 
-			// autopopulate public fields with user info
-			$userName = 'Jordan Wilson';
-			$userEmail = 'jordan@smallbox.com';
+		// when the view /messages/public/_form is loaded
+		view()->composer('messages.public._form', function($view)
+		{
+			$userName = '';
+			$userEmail = '';
+
+			$current = array_reverse(explode('/', \URL::current()));
+			if (is_numeric($current[0]))
+			{
+				// autopopulate public fields with user info
+				$userName = 'Jordan Wilson';
+				$userEmail = 'jordan@smallbox.com';
+			}
+
 			$view->with('userName', $userName)->with('userEmail', $userEmail);
 		});
 

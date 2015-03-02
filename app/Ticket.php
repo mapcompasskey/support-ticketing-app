@@ -97,7 +97,7 @@ class Ticket extends Model {
 	}
 
 	/**
-	 * Gets the number of public message a ticket has.
+	 * Gets the number of public messages a ticket has.
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
 	 */
@@ -106,6 +106,16 @@ class Ticket extends Model {
 		return $this->hasOne('App\PublicMessage')
 			->selectRaw('ticket_id, count(*) as aggregate')
 			->groupBy('ticket_id');
+	}
+
+	/**
+	 * A ticket can have many contacts.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function ticketContacts()
+	{
+		return $this->hasMany('App\TicketContact')->orderByCreated();
 	}
 
 }

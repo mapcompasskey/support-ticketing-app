@@ -35,6 +35,17 @@ class PublicMessagesController extends Controller {
 	 */
 	public function store(PublicMessageRequest $request)
 	{
+		$input = $request->all();
+
+		// add new email contact if doesn't exist
+		$contact = \App\TicketContact::where('ticket_id', '=', $input['ticket_id'])->where('email', '=', $input['email'])->get();
+		if ($contact->isEmpty())
+		{
+			$ticket = \App\Ticket::find($input['ticket_id']);
+			$ticket->ticketContacts()->create($request->all());
+		}
+
+		// add new public message
 		$message = PublicMessage::create($request->all());
 
 		Session::flash('new_public_message_id', $message->id);
@@ -83,7 +94,10 @@ class PublicMessagesController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		// i need to add a unique string for the unsubscribe link
+		// i'll give them an "unsubscribe" link in the email message
+		// that will open a page and match their email and the unique
+		// string against the database to the `ticket_contacts` to remove
 	}
 
 }

@@ -62,7 +62,16 @@ class TicketsController extends Controller {
 	 */
 	public function notify($id)
 	{
-		$ticket = Ticket::with('organization')->findOrFail($id);
+		$ticket = Ticket::with('organization', 'publicMessagesCount')->findOrFail($id);
+
+		// can't send notification if there is already a public message
+		if ($ticket->publicMessagesCount)
+		{
+			if ($ticket->publicMessagesCount->aggregate)
+			{
+				return redirect("tickets/{$id}");
+			}
+		}
 
 		return view('tickets.notify', compact('ticket'));
 	}
