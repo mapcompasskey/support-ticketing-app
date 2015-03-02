@@ -16,6 +16,17 @@
     @if ($ticket)
         @include('tickets._blurb', ['view' => 'show'])
 
+        <h4>Private Contacts</h4>
+        @unless ($ticket->users->isEmpty())
+            <ul>
+            @foreach ($ticket->users as $user)
+                <li>{{ $user->email }}</li>
+            @endforeach
+            </ul>
+        @else
+            <p>No private contacts were found.</p>
+        @endunless
+
         <h4>Public Contacts</h4>
         @unless ($ticket->publicMessagesContacts->isEmpty())
             <ul>

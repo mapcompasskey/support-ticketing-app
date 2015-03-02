@@ -31,4 +31,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+	/**
+	 * Get the tickets associated with the given user.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function tickets()
+	{
+		return $this->belongsToMany('App\Ticket');
+	}
 }

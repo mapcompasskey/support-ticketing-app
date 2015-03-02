@@ -118,4 +118,24 @@ class Ticket extends Model {
 		return $this->hasMany('App\TicketContact')->orderByCreated();
 	}
 
+	/**
+	 * Get the users associated with the given ticket.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function users()
+	{
+		return $this->belongsToMany('App\User')->withTimestamps();
+	}
+
+	/**
+	 * Get a list of user ids associated with the current ticket.
+	 *
+	 * @return array
+	 */
+	public function getUserListAttribute()
+	{
+		return $this->users->lists('id');
+	}
+
 }

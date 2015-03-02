@@ -17,6 +17,11 @@
     {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
 </div>
 
+<div class="form-group">
+    {!! Form::label('user_list', 'Whom to notify:') !!}
+    {!! Form::select('user_list[]', $users, null, ['id' => 'user_list', 'class' => 'form-control', 'multiple']) !!}
+</div>
+
 @if (isset($action) && $action == 'create')
 
     <div class="form-group">
