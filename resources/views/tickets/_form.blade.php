@@ -1,3 +1,7 @@
+{{--
+    $organization_id is set from /app/Providers/AppServiceProvider.php
+--}}
+
 <div class="form-group">
     {!! Form::label('organization_id', 'Organization:') !!}
     {!! Form::select('organization_id', $organizations, $organization_id, ['class' => 'form-control']) !!}

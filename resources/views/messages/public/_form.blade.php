@@ -1,3 +1,7 @@
+{{--
+    $userName and $userEmail are set from /app/Providers/AppServiceProvider.php
+--}}
+
 {!! Form::open(['action' => 'PublicMessagesController@store', 'id' => 'public-message']) !!}
 
     <div class="form-group">
