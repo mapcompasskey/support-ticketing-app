@@ -918,6 +918,37 @@ label {
   background-color: #fcfcfc;
 }
 
+/* line 3, ../../resources/assets/sass/app/_select2.scss */
+.select2-container {
+  max-width: 600px;
+}
+
+/* line 6, ../../resources/assets/sass/app/_select2.scss */
+.select2-container--default .select2-selection--multiple {
+  border-radius: 0px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+/* line 11, ../../resources/assets/sass/app/_select2.scss */
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+  padding: 5px;
+}
+
+/* line 14, ../../resources/assets/sass/app/_select2.scss */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 0px;
+  border: 1px solid #aaa;
+  background-color: #e4e4e4;
+}
+
+/* line 21, ../../resources/assets/sass/app/_select2.scss */
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+  margin-right: 10px;
+}
+
 /* line 4, ../../resources/assets/sass/app/_utilities.scss */
 .clearfix:after {
   content: " ";

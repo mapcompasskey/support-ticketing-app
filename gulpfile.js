@@ -33,6 +33,7 @@ elixir(function(mix) {
     {
         // Compile SASS
         // resources/assets/sass/app.scss -> resources/css/app.css
+        //*this appears to be adding 'css/app.css' to the root directory
         mix.compass('app.scss', 'resources/css', {
             sass: 'resources/assets/sass',
             style: 'compressed'
@@ -43,6 +44,7 @@ elixir(function(mix) {
         mix.styles([
             '../../public/css/fonts/glyphicons.css',
             '../../public/css/fonts/roboto.css',
+            '../../public/css/libs/select2.min.css',
             'app.css'
         ], 'public/css/app.min.css');
 
@@ -50,6 +52,7 @@ elixir(function(mix) {
         // public/js/[...] -> public/js/app.min.js
         mix.scripts([
             'libs/jquery.min.js',
+            'libs/select2.min.js',
             'app.js'
         ], 'public/js/app.min.js', 'public/js');
     }

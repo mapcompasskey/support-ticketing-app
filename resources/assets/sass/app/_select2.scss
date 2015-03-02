@@ -1,0 +1,23 @@
+// Select2: jQuery replacement for select boxes
+
+.select2-container {
+    max-width: 600px;
+}
+.select2-container--default .select2-selection--multiple {
+    border-radius: 0px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    padding: 5px;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    margin: 5px;
+    padding: 5px;
+    border-radius: 0px;
+    border: 1px solid #aaa;
+    background-color: #e4e4e4;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    margin-right: 10px;
+}

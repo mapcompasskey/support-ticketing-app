@@ -20,10 +20,9 @@
 		</div>
 	</div>
 
-	@yield('footer')
-
 	<!-- javascript -->
 	@include('partials._scripts')
+	@yield('footer')
 
 </body>
 </html>

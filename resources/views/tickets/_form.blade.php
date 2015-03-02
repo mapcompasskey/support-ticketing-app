@@ -43,3 +43,29 @@
 @endif
 
 @include ('errors.form')
+
+@section('footer')
+    <script>
+        $('#user_list').select2({
+            'tags': true,
+            'placeholder': 'choose a user'/*,
+            data: [
+                { id: 'one', text: 'One' },
+                { id: 'two', text: 'Two' }
+            ],
+            ajax: {
+                dataType: 'json',
+                url: 'api/tags',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        q: params.term
+                    }
+                },
+                processResults: function(data) {
+                    return { results: data }
+                }
+            }*/
+        });
+    </script>
+@endsection
