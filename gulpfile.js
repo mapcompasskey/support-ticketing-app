@@ -1,5 +1,5 @@
 var elixir = require('laravel-elixir');
-require('laravel-elixir-compass');
+require('laravel-elixir-sass-compass');
 
 /*
  |--------------------------------------------------------------------------
