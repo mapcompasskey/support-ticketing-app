@@ -1,7 +1,11 @@
 // Select2: jQuery replacement for select boxes
 
 .select2-container {
+    display: block;
     max-width: 600px;
+}
+.select2-container--open .select2-dropdown--below {
+    border-radius: 0;
 }
 .select2-container--default .select2-selection--multiple {
     border-radius: 0px;
@@ -13,11 +17,24 @@
 }
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
     margin: 5px;
-    padding: 5px;
+    padding: 5px 10px 5px 5px;
     border-radius: 0px;
     border: 1px solid #aaa;
     background-color: #e4e4e4;
 }
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
     margin-right: 10px;
+}
+.select2-container .select2-search--inline {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #fff;
+    background-color: #fff;
+}
+.select2-container--default .select2-search--inline .select2-search__field {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: none;
+    background: rgba(0, 0, 0, 0);
 }

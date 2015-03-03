@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider {
 					{
 						if ($view->getData()['ticket']->privateMessages->last()->id == Session::get('new_private_message_id'))
 						{
+							// add an "is_new" attribute to the last message
 							$view->getData()['ticket']->privateMessages->last()->is_new = true;
 						}
 					}
@@ -44,6 +45,7 @@ class AppServiceProvider extends ServiceProvider {
 					{
 						if ($view->getData()['ticket']->publicMessages->last()->id == Session::get('new_public_message_id'))
 						{
+							// add an "is_new" attribute to the last message
 							$view->getData()['ticket']->publicMessages->last()->is_new = true;
 						}
 					}
@@ -54,33 +56,50 @@ class AppServiceProvider extends ServiceProvider {
 		// when the view /messages/public/_form is loaded
 		view()->composer('messages.public._form', function($view)
 		{
-			$userName = '';
-			$userEmail = '';
+			$userName = null;
+			$userEmail = null;
+			$isNotify = null;
 
+			// if viewing a tickets page
 			$current = array_reverse(explode('/', \URL::current()));
-			if (is_numeric($current[0]))
+			if (is_numeric($current[0]) && $current[1] == 'tickets')
 			{
-				// autopopulate public fields with user info
+				// autopopulate public message fields with user info
 				$userName = 'Jordan Wilson';
 				$userEmail = 'jordan@smallbox.com';
 			}
 
-			$view->with('userName', $userName)->with('userEmail', $userEmail);
+			// if viewing notification form
+			if ($current[0] == 'notify' && is_numeric($current[1]) && $current[2] == 'tickets')
+			{
+				$isNotify = true;
+			}
+
+			$view->with('userName', $userName)->with('userEmail', $userEmail)->with('isNotify', $isNotify);
 		});
 
 		// when the view /tickets/_form is loaded
 		view()->composer('tickets._form', function($view)
 		{
-			// check if creating a ticket from an organization's page
-			$organization_id = 0;
-			if (isset($_SERVER['HTTP_REFERER']))
+			$organizationId = null;
+			$userIds = null;
+
+			// check if creating a new ticket
+			$current = array_reverse(explode('/', \URL::current()));
+			if ($current[0] == 'create' && $current[1] == 'tickets')
 			{
-				$referrer = array_reverse(explode('/', $_SERVER['HTTP_REFERER']));
-				if (is_numeric($referrer[0]) && $referrer[1] == 'organizations') {
-					$organization_id = $referrer[0];
+				// check if sent from an organization's page
+				$previous = array_reverse(explode('/', \URL::previous()));
+				if (is_numeric($previous[0]) && $previous[1] == 'organizations')
+				{
+					$organizationId = $previous[0];
 				}
+
+				// add the current user to list of users
+				$userIds = [1];
 			}
-			$view->with('organization_id', $organization_id);
+
+			$view->with('organizationId', $organizationId)->with('userIds', $userIds);
 		});
 	}
 

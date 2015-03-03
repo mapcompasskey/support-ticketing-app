@@ -25,7 +25,19 @@ class Ticket extends Model {
 	protected $dates = ['closed_at'];
 
 	/**
+	 * Get a list of user ids associated with the current ticket.
+	 * Called when the user_list attribute is requested on the Ticket model.
+	 *
+	 * @return array
+	 */
+	public function getUserListAttribute()
+	{
+		return $this->users->lists('id');
+	}
+
+	/**
 	 * Set the closed_at attribute.
+	 * Called when the closed_at attribute is set on the Ticket model.
 	 *
 	 * @param $date
 	 */
@@ -126,16 +138,6 @@ class Ticket extends Model {
 	public function users()
 	{
 		return $this->belongsToMany('App\User')->withTimestamps();
-	}
-
-	/**
-	 * Get a list of user ids associated with the current ticket.
-	 *
-	 * @return array
-	 */
-	public function getUserListAttribute()
-	{
-		return $this->users->lists('id');
 	}
 
 }

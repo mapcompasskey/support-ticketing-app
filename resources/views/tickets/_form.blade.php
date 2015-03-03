@@ -1,10 +1,10 @@
 {{--
-    $organization_id is set from /app/Providers/AppServiceProvider.php
+    $organizationId and $userIds are set in /app/Providers/AppServiceProvider.php
 --}}
 
 <div class="form-group">
     {!! Form::label('organization_id', 'Organization:') !!}
-    {!! Form::select('organization_id', $organizations, $organization_id, ['class' => 'form-control']) !!}
+    {!! Form::select('organization_id', $organizations, $organizationId, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
@@ -19,18 +19,19 @@
 
 <div class="form-group">
     {!! Form::label('user_list', 'Whom to notify:') !!}
-    {!! Form::select('user_list[]', $users, null, ['id' => 'user_list', 'class' => 'form-control', 'multiple']) !!}
+    {!! Form::select('user_list[]', $users, $userIds, ['id' => 'user_list', 'class' => 'form-control', 'multiple']) !!}
 </div>
 
 @if (isset($action) && $action == 'create')
 
     <div class="form-group">
         {!! Form::checkbox('notify', 1, null, ['id' => 'notify']) !!}
-        {!! Form::label('notify', 'Send Notification') !!}
+        {!! Form::label('notify', 'Add Public Notification Email') !!}
     </div>
 
     <div class="form-group">
         {!! Form::submit('Add Ticket', ['class' => 'btn btn-green']) !!}
+        <a class="btn btn-white" href="{{ action('TicketsController@index') }}">Nevermind</a>
     </div>
 
 @elseif (isset($action) && $action == 'edit')

@@ -1,5 +1,5 @@
 {{--
-    $userName and $userEmail are set from /app/Providers/AppServiceProvider.php
+    $userName, $userEmail, and $isNotify are set from /app/Providers/AppServiceProvider.php
 --}}
 
 {!! Form::open(['action' => 'PublicMessagesController@store', 'id' => 'public-message']) !!}
@@ -29,7 +29,7 @@
     </div>
 
     <div class="form-group">
-        {!! Form::checkbox('notify', 1, (isset($action) && $action == 'notify' ? true : null), ['id' => 'notify']) !!}
+        {!! Form::checkbox('notify', 1, $isNotify, ['id' => 'notify']) !!}
         {!! Form::label('notify', 'Notify me when new messages are posted') !!}
     </div>
 
