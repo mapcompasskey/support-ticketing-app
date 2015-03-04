@@ -41,7 +41,7 @@ class TicketsController extends Controller {
 	public function store(TicketRequest $request)
 	{
 		$input = $request->all();
-		$input['slug'] = strtolower(str_random(10)); // need to check if its unique
+		$input['slug'] = strtolower(str_random(10));
 
 		$ticket = Ticket::create($input);
 		$name = $ticket->name;
