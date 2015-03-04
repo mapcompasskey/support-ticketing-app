@@ -48,4 +48,21 @@ class PublicMessageRequest extends Request {
 		return $url->previous() . '#public-message';
 	}
 
+	/**
+	 * Get the validator instance for the request.
+	 *
+	 * @param $factory \Illuminate\Validation\Factory
+	 * @return \Illuminate\Validation\Validator
+	 */
+	public function validator(\Illuminate\Validation\Factory $factory)
+	{
+		// add 'notify' attribute if doesn't exist
+		if ( ! $this->request->has('notify'))
+		{
+			$this->merge(['notify' => 0]);
+		}
+
+		return $factory->make($this->all(), $this->rules());
+	}
+
 }

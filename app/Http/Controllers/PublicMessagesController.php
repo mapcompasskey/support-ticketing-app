@@ -37,9 +37,10 @@ class PublicMessagesController extends Controller {
 	{
 		$input = $request->all();
 
-		// add new email contact if doesn't exist
-		if (isset($input['notify']) && $input['notify'] == 1)
+		// add new public contact
+		if ($input['notify'] == 1)
 		{
+			// check if email already exist
 			$contact = \App\PublicContact::where('ticket_id', '=', $input['ticket_id'])->where('email', '=', $input['email'])->get();
 			if ($contact->isEmpty())
 			{
