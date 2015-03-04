@@ -25,6 +25,16 @@ class PublicContact extends Model {
     }
 
     /**
+     * Scope query for getting contacts by ticket_id and email
+     *
+     * @param $query
+     */
+    public function scopeWhereTicketEmail($query, Array $input)
+    {
+        $query->where('ticket_id', '=', $input['ticket_id'])->where('email', '=', $input['email']);
+    }
+
+    /**
      * A public contact is owned by a ticket
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
