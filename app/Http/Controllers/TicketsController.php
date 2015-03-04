@@ -152,11 +152,10 @@ class TicketsController extends Controller {
 	 * Sync up the list of users in the database.
 	 *
 	 * @param Ticket $ticket
-	 * @param array $users (or null)
+	 * @param array $users
 	 */
-	private function syncUsers(Ticket $ticket, $users)
+	private function syncUsers(Ticket $ticket, array $users)
 	{
-		$users = (is_array($users) ? $users : []);
 		$ticket->users()->sync($users);
 	}
 
