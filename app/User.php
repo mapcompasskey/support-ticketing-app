@@ -38,7 +38,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	public function tickets()
 	{
-		return $this->belongsToMany('App\Ticket');
+		return $this->belongsToMany('App\Ticket', 'private_contacts')->withTimestamps();
 	}
 
 }

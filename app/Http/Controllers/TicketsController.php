@@ -27,7 +27,7 @@ class TicketsController extends Controller {
 	{
 		$organizations = \App\Organization::lists('name', 'id');
 
-		$users = [];//\App\User::lists('name', 'id');
+		$users = \App\User::lists('name', 'id');
 
 		return view('tickets.create', compact('organizations', 'users'));
 	}
@@ -47,7 +47,7 @@ class TicketsController extends Controller {
 		$name = $ticket->name;
 
 		// update users in pivot table
-		//$this->syncUsers($ticket, $request->input('user_list'));
+		$this->syncUsers($ticket, $request->input('user_list'));
 
 		session()->flash('flash_message', 'The ticket "' . $name . '" has been created.');
 
@@ -89,8 +89,7 @@ class TicketsController extends Controller {
 	 */
 	public function show($id)
 	{
-		//$ticket = Ticket::with('organization', 'privateMessages.user', 'publicMessages', 'publicMessagesContacts', 'users')->findOrFail($id);
-		$ticket = Ticket::with('organization', 'privateMessages.user', 'publicMessages', 'publicMessagesContacts', 'publicContacts')->findOrFail($id);
+		$ticket = Ticket::with('organization', 'privateMessages.user', 'publicMessages', 'publicMessagesContacts', 'publicContacts', 'users')->findOrFail($id);
 
 		return view('tickets.show', compact('ticket'));
 	}
@@ -107,7 +106,7 @@ class TicketsController extends Controller {
 
 		$organizations = \App\Organization::lists('name', 'id');
 
-		$users = [];//\App\User::lists('name', 'id');
+		$users = \App\User::lists('name', 'id');
 
 		return view('tickets.edit', compact('ticket', 'organizations', 'users'));
 	}
@@ -126,7 +125,7 @@ class TicketsController extends Controller {
 		$ticket->update($request->all());
 
 		// update users in pivot table
-		//$this->syncUsers($ticket, $request->input('user_list'));
+		$this->syncUsers($ticket, $request->input('user_list'));
 
 		return redirect("tickets/{$id}");
 	}
@@ -155,10 +154,10 @@ class TicketsController extends Controller {
 	 * @param Ticket $ticket
 	 * @param array $users (or null)
 	 */
-	/*private function syncUsers(Ticket $ticket, $users)
+	private function syncUsers(Ticket $ticket, $users)
 	{
 		$users = (is_array($users) ? $users : []);
 		$ticket->users()->sync($users);
-	}*/
+	}
 
 }

@@ -30,10 +30,10 @@ class Ticket extends Model {
 	 *
 	 * @return array
 	 */
-	/*public function getUserListAttribute()
+	public function getUserListAttribute()
 	{
 		return $this->users->lists('id');
-	}*/
+	}
 
 	/**
 	 * Set the closed_at attribute.
@@ -135,9 +135,9 @@ class Ticket extends Model {
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
 	 */
-	/*public function users()
+	public function users()
 	{
-		return $this->belongsToMany('App\User')->withTimestamps();
-	}*/
+		return $this->belongsToMany('App\User', 'private_contacts')->withTimestamps();
+	}
 
 }
