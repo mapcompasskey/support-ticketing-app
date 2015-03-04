@@ -30,10 +30,10 @@ class Ticket extends Model {
 	 *
 	 * @return array
 	 */
-	public function getUserListAttribute()
+	/*public function getUserListAttribute()
 	{
 		return $this->users->lists('id');
-	}
+	}*/
 
 	/**
 	 * Set the closed_at attribute.
@@ -121,13 +121,13 @@ class Ticket extends Model {
 	}
 
 	/**
-	 * A ticket can have many contacts.
+	 * A ticket can have many public contacts.
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
-	public function ticketContacts()
+	public function publicContacts()
 	{
-		return $this->hasMany('App\TicketContact')->orderByCreated();
+		return $this->hasMany('App\PublicContact')->orderByCreated();
 	}
 
 	/**
@@ -135,9 +135,9 @@ class Ticket extends Model {
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
 	 */
-	public function users()
+	/*public function users()
 	{
 		return $this->belongsToMany('App\User')->withTimestamps();
-	}
+	}*/
 
 }

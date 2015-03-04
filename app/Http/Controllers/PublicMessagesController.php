@@ -38,11 +38,14 @@ class PublicMessagesController extends Controller {
 		$input = $request->all();
 
 		// add new email contact if doesn't exist
-		$contact = \App\TicketContact::where('ticket_id', '=', $input['ticket_id'])->where('email', '=', $input['email'])->get();
-		if ($contact->isEmpty())
+		if (isset($input['notify']) && $input['notify'] == 1)
 		{
-			$ticket = \App\Ticket::find($input['ticket_id']);
-			$ticket->ticketContacts()->create($request->all());
+			$contact = \App\PublicContact::where('ticket_id', '=', $input['ticket_id'])->where('email', '=', $input['email'])->get();
+			if ($contact->isEmpty())
+			{
+				$ticket = \App\Ticket::find($input['ticket_id']);
+				$ticket->publicContacts()->create($request->all());
+			}
 		}
 
 		// add new public message

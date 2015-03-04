@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class TicketContact extends Model {
+class PublicContact extends Model {
 
     /**
      * The attributes that are mass assignable.
@@ -25,7 +25,7 @@ class TicketContact extends Model {
     }
 
     /**
-     * A contact is owned by a ticket
+     * A public contact is owned by a ticket
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
