@@ -28,10 +28,11 @@ class PublicContact extends Model {
      * Scope query for getting contacts by ticket_id and email
      *
      * @param $query
+     * * @param array $input
      */
-    public function scopeWhereTicketEmail($query, Array $input)
+    public function scopeTicketIdAndEmail($query, Array $input)
     {
-        $query->where('ticket_id', '=', $input['ticket_id'])->where('email', '=', $input['email']);
+        $query->whereTicketId($input['ticket_id'])->whereEmail($input['email']);
     }
 
     /**

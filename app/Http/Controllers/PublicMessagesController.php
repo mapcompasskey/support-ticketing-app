@@ -2,6 +2,7 @@
 
 use App\PublicMessage;
 use App\Http\Requests\PublicMessageRequest;
+use \App\Http\Requests\PublicContactRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
@@ -31,17 +32,27 @@ class PublicMessagesController extends Controller {
 	 * Store a newly created resource in storage.
 	 *
 	 * @param PublicMessageRequest $request
+	 * @param PublicContactRequest $contactRequest
 	 * @return Response
 	 */
-	public function store(PublicMessageRequest $request)
+	public function store(PublicMessageRequest $request, PublicContactRequest $contactRequest)
 	{
 		$input = $request->all();
+
+		//$publicContact->store($input);
+		//$publicContact = new \App\Services\CreatePublicContact();
+		//$publicContact->store($request);
+
+		//$ticket = \App\Ticket::find($input['ticket_id']);
+		//$contact = $ticket->publicContacts()->get();
+		//dd($contact);
+		dd('hey');
 
 		// add new public contact
 		if ($input['notify'] == 1)
 		{
 			// check if email already exist
-			$contact = \App\PublicContact::whereTicketEmail($input)->get();
+			$contact = \App\PublicContact::ticketIdAndEmail($input)->get();
 			if ($contact->isEmpty())
 			{
 				$ticket = \App\Ticket::find($input['ticket_id']);
