@@ -4,6 +4,7 @@ use App\PublicMessage;
 use App\Http\Requests\PublicMessageRequest;
 use \App\Http\Requests\PublicContactRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class PublicMessagesController extends Controller {
@@ -39,6 +40,36 @@ class PublicMessagesController extends Controller {
 	{
 		$input = $request->all();
 
+		// add new public message
+		$message = new PublicMessage;
+		$message->fill($input);
+
+		// add new public contact if it doesn't exist
+		$contact = null;
+		if ($input['notify'] && \App\PublicContact::ticketIdAndEmail($input)->get()->isEmpty())
+		{
+			$contact = new \App\PublicContact;
+			$contact->fill($input);
+		}
+
+		// this will cause the queries to rollback if any query fails
+		DB::transaction(function() use ($message, $contact) {
+			$message->save();
+			if ($contact)
+			{
+				$contact->save();
+			}
+		});
+
+		Session::flash('new_public_message_id', $message->id);
+
+		return redirect("tickets/{$message->ticket_id}#new-message");
+	}
+	/*
+	public function store(PublicMessageRequest $request, PublicContactRequest $contactRequest)
+	{
+		$input = $request->all();
+
 		//$publicContact->store($input);
 		//$publicContact = new \App\Services\CreatePublicContact();
 		//$publicContact->store($request);
@@ -67,6 +98,7 @@ class PublicMessagesController extends Controller {
 
 		return redirect("tickets/{$message['ticket_id']}#new-message");
 	}
+	*/
 
 	/**
 	 * Display the specified resource.

@@ -30,7 +30,7 @@ class PublicContactRequest extends Request {
     {
         return [
             'ticket_id' => 'required|integer',
-            'emailo' => 'required|email'
+            'email' => 'required|email'
         ];
     }
 
