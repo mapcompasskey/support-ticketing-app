@@ -31,6 +31,11 @@
         </div>
 
         <div class="form-group">
+            {!! Form::checkbox('notify', 1, $userNotified, ['id' => 'notify']) !!}
+            {!! Form::label('notify', 'Notify me when new messages are posted') !!}
+        </div>
+
+        <div class="form-group">
             {!! Form::submit('Add New Private Message', ['class' => 'btn btn-blue']) !!}
         </div>
 

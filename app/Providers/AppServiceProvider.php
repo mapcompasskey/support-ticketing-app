@@ -31,6 +31,16 @@ class AppServiceProvider extends ServiceProvider {
 					}
 				}
 			}
+
+			// check if the user is receiving private message notifications
+			if ($view->getData()['ticket'])
+			{
+				if ($view->getData()['ticket']->users)
+				{
+					$userNotified = ($view->getData()['ticket']->users->find(1) ? 1 : 0);
+					$view->with('userNotified', $userNotified);
+				}
+			}
 		});
 
 		// when the view /messages/public/_list is loaded

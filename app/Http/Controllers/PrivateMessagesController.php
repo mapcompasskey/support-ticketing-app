@@ -42,9 +42,23 @@ class PrivateMessagesController extends Controller {
 
 		$message = PrivateMessage::create($input);
 
+		// add or remove user from receiving notifications
+		$ticket = \App\Ticket::find($message->ticket_id);
+		if ($request['notify'])
+		{
+			if ( ! $ticket->users()->find($input['user_id']))
+			{
+				$ticket->users()->attach([$input['user_id']]);
+			}
+		}
+		else
+		{
+			$ticket->users()->detach([$input['user_id']]);
+		}
+
 		Session::flash('new_private_message_id', $message->id);
 
-		return redirect("tickets/{$input['ticket_id']}#new-message");
+		return redirect("tickets/{$message->ticket_id}#new-message");
 	}
 
 	/**

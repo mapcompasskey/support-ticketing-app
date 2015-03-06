@@ -27,6 +27,7 @@ class CreatePrivateContactsTable extends Migration {
 				->onDelete('cascade');
 
 			$table->timestamps();
+			$table->unique(array('ticket_id', 'user_id'));
 		});
 	}
 

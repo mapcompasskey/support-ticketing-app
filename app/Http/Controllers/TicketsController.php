@@ -91,7 +91,7 @@ class TicketsController extends Controller {
 	{
 		$ticket = Ticket::with('organization', 'privateMessages.user', 'publicMessages', 'publicMessagesContacts', 'publicContacts', 'users')->findOrFail($id);
 
-		return view('tickets.show', compact('ticket'));
+		return view('tickets.show', compact('ticket', 'userNotified'));
 	}
 
 	/**
