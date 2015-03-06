@@ -3,7 +3,7 @@
 use App\Ticket;
 use App\PublicMessage;
 use App\PublicContact;
-use App\Http\Requests\PublicMessageRequest;
+use App\Http\Requests\Frontend\PublicMessageRequest;
 use App\Http\Requests\PublicContactRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;

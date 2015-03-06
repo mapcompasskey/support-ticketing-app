@@ -5,6 +5,13 @@ use App\Http\Requests\Request;
 class PublicMessageRequest extends Request {
 
 	/**
+	 * The hash tag to use when redirecting with errors.
+	 *
+	 * @var string
+	 */
+	protected $hashtag = '#public-message';
+
+	/**
 	 * The key to be used for the view error bag.
 	 *
 	 * @var string
@@ -45,14 +52,7 @@ class PublicMessageRequest extends Request {
 	{
 		$url = $this->redirector->getUrlGenerator();
 
-		// if errors on the frontend
-		$route = explode('/', Request::route()->getPath());
-		if ($route[0] == 'x')
-		{
-			return $url->previous() . '#errors';
-		}
-
-		return $url->previous() . '#public-message';
+		return $url->previous() . $this->hashtag;
 	}
 
 	/**
