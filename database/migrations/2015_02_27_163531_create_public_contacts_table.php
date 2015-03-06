@@ -23,6 +23,8 @@ class CreatePublicContacts extends Migration {
 				->references('id')
 				->on('tickets')
 				->onDelete('cascade');
+
+			$table->unique(array('ticket_id', 'email'));
 		});
 	}
 

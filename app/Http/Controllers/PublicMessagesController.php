@@ -1,10 +1,10 @@
 <?php namespace App\Http\Controllers;
 
 use App\PublicMessage;
+use App\PublicContact;
 use App\Http\Requests\PublicMessageRequest;
-use \App\Http\Requests\PublicContactRequest;
+use App\Http\Requests\PublicContactRequest;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class PublicMessagesController extends Controller {
@@ -38,67 +38,23 @@ class PublicMessagesController extends Controller {
 	 */
 	public function store(PublicMessageRequest $request, PublicContactRequest $contactRequest)
 	{
-		$input = $request->all();
-
 		// add new public message
-		$message = new PublicMessage;
-		$message->fill($input);
+		$message = PublicMessage::create($request->all());
 
-		// add new public contact if it doesn't exist
-		$contact = null;
-		if ($input['notify'] && \App\PublicContact::ticketIdAndEmail($input)->get()->isEmpty())
+		// add new (or update) public contact
+		if ($request['notify'])
 		{
-			$contact = new \App\PublicContact;
-			$contact->fill($input);
+			$contact = PublicContact::firstOrNew([
+				'ticket_id' => $contactRequest['ticket_id'],
+				'email' => $contactRequest['email']
+			]);
+			$contact->fill($contactRequest->all())->save();
 		}
-
-		// this will cause the queries to rollback if any query fails
-		DB::transaction(function() use ($message, $contact) {
-			$message->save();
-			if ($contact)
-			{
-				$contact->save();
-			}
-		});
 
 		Session::flash('new_public_message_id', $message->id);
 
 		return redirect("tickets/{$message->ticket_id}#new-message");
 	}
-	/*
-	public function store(PublicMessageRequest $request, PublicContactRequest $contactRequest)
-	{
-		$input = $request->all();
-
-		//$publicContact->store($input);
-		//$publicContact = new \App\Services\CreatePublicContact();
-		//$publicContact->store($request);
-
-		//$ticket = \App\Ticket::find($input['ticket_id']);
-		//$contact = $ticket->publicContacts()->get();
-		//dd($contact);
-		dd('hey');
-
-		// add new public contact
-		if ($input['notify'] == 1)
-		{
-			// check if email already exist
-			$contact = \App\PublicContact::ticketIdAndEmail($input)->get();
-			if ($contact->isEmpty())
-			{
-				$ticket = \App\Ticket::find($input['ticket_id']);
-				$ticket->publicContacts()->create($request->all());
-			}
-		}
-
-		// add new public message
-		$message = PublicMessage::create($request->all());
-
-		Session::flash('new_public_message_id', $message->id);
-
-		return redirect("tickets/{$message['ticket_id']}#new-message");
-	}
-	*/
 
 	/**
 	 * Display the specified resource.
