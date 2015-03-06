@@ -40,6 +40,10 @@ Route::post('private-messages', 'PrivateMessagesController@store');
 // Public Messages
 Route::post('public-messages', 'PublicMessagesController@store');
 
+// Frontend
+Route::get('x/{id}/{slug}', 'FrontendTicketsController@show');
+Route::post('x/message', 'FrontendTicketsController@store');
+
 //Route::controllers([
 //	'auth' => 'Auth\AuthController',
 //	'password' => 'Auth\PasswordController',

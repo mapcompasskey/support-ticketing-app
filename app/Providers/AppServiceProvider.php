@@ -37,8 +37,8 @@ class AppServiceProvider extends ServiceProvider {
 			{
 				if ($view->getData()['ticket']->users)
 				{
-					$userNotified = ($view->getData()['ticket']->users->find(1) ? 1 : 0);
-					$view->with('userNotified', $userNotified);
+					$isUserNotified = ($view->getData()['ticket']->users->find(1) ? 1 : 0);
+					$view->with('isUserNotified', $isUserNotified);
 				}
 			}
 		});

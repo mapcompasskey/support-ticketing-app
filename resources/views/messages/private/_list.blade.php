@@ -31,7 +31,7 @@
         </div>
 
         <div class="form-group">
-            {!! Form::checkbox('notify', 1, $userNotified, ['id' => 'notify']) !!}
+            {!! Form::checkbox('notify', 1, $isUserNotified, ['id' => 'notify']) !!}
             {!! Form::label('notify', 'Notify me when new messages are posted') !!}
         </div>
 

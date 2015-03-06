@@ -42,7 +42,7 @@ class PrivateMessagesController extends Controller {
 
 		$message = PrivateMessage::create($input);
 
-		// add or remove user from receiving notifications
+		// add or remove user from receiving private message notifications
 		$ticket = \App\Ticket::find($message->ticket_id);
 		if ($request['notify'])
 		{

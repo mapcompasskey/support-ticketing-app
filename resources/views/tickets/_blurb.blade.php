@@ -20,6 +20,11 @@
         <h2>{{ $ticket->name }}</h2>
         <h5>ID: {{ $ticket->id }}</h5>
         <h5>Slug: {{ $ticket->slug }}</h5>
+        <p>
+            <a href="{{ action('FrontendTicketsController@show', [$ticket->id, $ticket->slug]) }}" target="_blank">
+                Visit Frontend Thread
+            </a>
+        </p>
         <p>{{ $ticket->description }}</p>
 
     @endif

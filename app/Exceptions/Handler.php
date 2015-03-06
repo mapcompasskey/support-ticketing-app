@@ -39,6 +39,13 @@ class Handler extends ExceptionHandler {
 	{
 		if ($e instanceof ModelNotFoundException)
 		{
+			// if error thrown on the frontend
+			$route = explode('/', $request->route()->getPath());
+			if ($route[0] == 'x')
+			{
+				return response()->view('frontend.errors.404', [], 404);
+			}
+
 			return response()->view('errors.404', [], 404);
 		}
 
