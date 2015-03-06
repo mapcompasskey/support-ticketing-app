@@ -38,7 +38,6 @@ class PublicMessagesController extends Controller {
 	 */
 	public function store(PublicMessageRequest $request, PublicContactRequest $contactRequest)
 	{
-		/*
 		// add new public message
 		$message = PublicMessage::create($request->all());
 
@@ -51,35 +50,6 @@ class PublicMessagesController extends Controller {
 			]);
 			$contact->fill($contactRequest->all())->save();
 		}
-
-		Session::flash('new_public_message_id', $message->id);
-
-		return redirect("tickets/{$message->ticket_id}#new-message");
-		*/
-		\Illuminate\Support\Facades\DB::beginTransaction();
-
-		try
-		{
-			// add new public message
-			$message = PublicMessage::create($request->all());
-
-			// add new (or update) public contact
-			if ($request['notify'])
-			{
-				$contact = PublicContact::firstOrNew([
-					'ticket_id' => $contactRequest['ticket_id'],
-					'email' => $contactRequest['email']
-				]);
-				$contact->fill($contactRequest->all())->save();
-			}
-		}
-		catch(\Illuminate\Database\QueryException $e)
-		{
-			\Illuminate\Support\Facades\DB::rollback();
-			return redirect("tickets/{$request['ticket_id']}#public-message")->withErrors(array('error'=>'There was a problem saving the message.'), 'publicMessage')->withInput();
-		}
-
-		\Illuminate\Support\Facades\DB::commit();
 
 		Session::flash('new_public_message_id', $message->id);
 
