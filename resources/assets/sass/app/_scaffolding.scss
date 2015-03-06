@@ -61,3 +61,11 @@ hr {
     max-width: 1200px;
     margin: 0 auto;
 }
+
+// anchor link
+a.anchor-offset {
+    display: block;
+    position: relative;
+    top: -50px;
+    visibility: hidden
+}

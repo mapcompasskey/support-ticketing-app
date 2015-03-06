@@ -7,7 +7,8 @@
     <hr />
 
     @forelse ($ticket->publicMessages as $message)
-        <div class="public-message">
+        <div class="public-message{{ $message->is_new ? ' new-message' : '' }}">
+            <a id="msg{{ $message->id }}" class="anchor-offset"></a>
             <p>
                 <em>{{ $message->updated_at->diffForHumans() }}</em>
             </p>
@@ -20,14 +21,23 @@
         </div>
         <hr />
     @empty
-        <p>There are no public messages.</p>
+        <p>There are no messages.</p>
+        <p>&nbsp</p>
+        <hr />
     @endforelse
 
-    <p>&nbsp</p>
-    <p>&nbsp</p>
-    <hr />
+    {!! Form::open(['action' => 'Frontend\PublicMessagesController@store']) !!}
 
-    {!! Form::open(['action' => 'FrontendTicketsController@store']) !!}
+        @if ( ! $errors->publicMessage->isEmpty())
+            <div class="alert-danger">
+                <a id="errors" class="anchor-offset"></a>
+                <ul>
+                    @foreach ($errors->publicMessage->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <div class="form-group">
             {!! Form::label('name', 'Name:') !!}
@@ -62,7 +72,5 @@
         {!! Form::hidden('ticket_slug', $ticket->slug) !!}
 
     {!! Form::close() !!}
-
-    @include ('errors.form', ['errorBagName' => 'publicMessage'])
 
 @endif

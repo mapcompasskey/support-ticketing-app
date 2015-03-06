@@ -41,8 +41,8 @@ Route::post('private-messages', 'PrivateMessagesController@store');
 Route::post('public-messages', 'PublicMessagesController@store');
 
 // Frontend
-Route::get('x/{id}/{slug}', 'FrontendTicketsController@show');
-Route::post('x/message', 'FrontendTicketsController@store');
+Route::get('x/{id}/{slug}', 'Frontend\TicketsController@show');
+Route::post('x/message', 'Frontend\PublicMessagesController@store');
 
 //Route::controllers([
 //	'auth' => 'Auth\AuthController',

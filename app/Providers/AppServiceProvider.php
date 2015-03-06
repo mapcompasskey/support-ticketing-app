@@ -111,6 +111,26 @@ class AppServiceProvider extends ServiceProvider {
 
 			$view->with('organizationId', $organizationId)->with('userIds', $userIds);
 		});
+
+		// when the view /frontned/messages/public/_list is loaded
+		view()->composer('frontend.messages.public._list', function($view)
+		{
+			// check if a new public message was just created
+			if (Session::get('new_public_message_id'))
+			{
+				if ($view->getData()['ticket'])
+				{
+					if ($view->getData()['ticket']->publicMessages->count())
+					{
+						if ($view->getData()['ticket']->publicMessages->last()->id == Session::get('new_public_message_id'))
+						{
+							// add an "is_new" attribute to the last message
+							$view->getData()['ticket']->publicMessages->last()->is_new = true;
+						}
+					}
+				}
+			}
+		});
 	}
 
 	/**

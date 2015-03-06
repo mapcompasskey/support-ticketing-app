@@ -45,6 +45,13 @@ class PublicMessageRequest extends Request {
 	{
 		$url = $this->redirector->getUrlGenerator();
 
+		// if errors on the frontend
+		$route = explode('/', Request::route()->getPath());
+		if ($route[0] == 'x')
+		{
+			return $url->previous() . '#errors';
+		}
+
 		return $url->previous() . '#public-message';
 	}
 

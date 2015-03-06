@@ -1,11 +1,10 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Frontend;
 
 use App\Ticket;
-use App\Http\Requests\PublicMessageRequest;
+use App\Http\Requests\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
-class FrontendTicketsController extends Controller {
+class TicketsController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -30,34 +29,12 @@ class FrontendTicketsController extends Controller {
 	/**
 	 * Store a newly created resource in storage.
 	 *
-	 * @param PublicMessageRequest $request
+	 * @param Request $request
 	 * @return Response
 	 */
-	public function store(PublicMessageRequest $request)
+	public function store(Request $request)
 	{
-		echo '<pre>' . print_r($request->all(), true) . '</pre>';
-
-		$ticket = Ticket::whereId($request['ticket_id'])->whereSlug($request['ticket_slug'])->firstOrFail();
-		echo '<pre>' . print_r($ticket->toArray(), true) . '</pre>';
-
-		/*
-		// add new public message
-		$message = PublicMessage::create($request->all());
-
-		// add new (or update) public contact
-		if ($request['notify'])
-		{
-			$contact = PublicContact::firstOrNew([
-				'ticket_id' => $contactRequest['ticket_id'],
-				'email' => $contactRequest['email']
-			]);
-			$contact->fill($contactRequest->all())->save();
-		}
-
-		Session::flash('new_public_message_id', $message->id);
-
-		return redirect("tickets/{$message->ticket_id}#new-message");
-		*/
+		//
 	}
 
 	/**
