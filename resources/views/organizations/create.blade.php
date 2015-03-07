@@ -5,6 +5,6 @@
     <hr />
 
     {!! Form::open(['action' => 'OrganizationsController@store']) !!}
-        @include ('organizations._form', ['submitButtonText' => 'Add Organization', 'submitButtonClass' => 'btn-green'])
+        @include ('organizations._form', ['action' => 'create'])
     {!! Form::close() !!}
 @stop

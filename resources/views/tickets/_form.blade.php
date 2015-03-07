@@ -2,6 +2,8 @@
     $organizationId and $userIds are set in /app/Providers/AppServiceProvider.php
 --}}
 
+@include ('errors.form')
+
 <div class="form-group">
     {!! Form::label('organization_id', 'Organization:') !!}
     {!! Form::select('organization_id', $organizations, $organizationId, ['class' => 'form-control']) !!}
@@ -42,8 +44,6 @@
     </div>
 
 @endif
-
-@include ('errors.form')
 
 @section('footer')
     <script>

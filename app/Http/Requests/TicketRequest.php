@@ -5,6 +5,13 @@ use App\Http\Requests\Request;
 class TicketRequest extends Request {
 
 	/**
+	 * The hash tag to use when redirecting with errors.
+	 *
+	 * @var string
+	 */
+	protected $hashtag = '#form-errors';
+
+	/**
 	 * Determine if the user is authorized to make this request.
 	 *
 	 * @return bool
@@ -30,6 +37,18 @@ class TicketRequest extends Request {
 	}
 
 	/**
+	 * Get the URL to redirect to on a validation error.
+	 *
+	 * @return string
+	 */
+	protected function getRedirectUrl()
+	{
+		$url = $this->redirector->getUrlGenerator();
+
+		return $url->previous() . $this->hashtag;
+	}
+
+	/**
 	 * Get the validator instance for the request.
 	 *
 	 * @param $factory \Illuminate\Validation\Factory
@@ -41,12 +60,6 @@ class TicketRequest extends Request {
 		if ( ! $this->request->has('user_list'))
 		{
 			$this->merge(['user_list' => []]);
-		}
-
-		// add 'notify' attribute if doesn't exist
-		if ( ! $this->request->has('notify'))
-		{
-			$this->merge(['notify' => 0]);
 		}
 
 		return $factory->make($this->all(), $this->rules());

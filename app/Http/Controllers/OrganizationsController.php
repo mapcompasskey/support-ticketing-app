@@ -37,9 +37,8 @@ class OrganizationsController extends Controller {
 	public function store(OrganizationRequest $request)
 	{
 		$organization = Organization::create($request->all());
-		$name = $organization->name;
 
-		session()->flash('flash_message', 'The organization "' . $name . '" has been created.');
+		session()->flash('flash_message', "The organization \"{$organization->name}\" has been created.");
 
 		return redirect('organizations');
 	}
@@ -99,7 +98,7 @@ class OrganizationsController extends Controller {
 
 		$organization->delete();
 
-		session()->flash('flash_message', 'The organization "' . $name . '" has been removed.');
+		session()->flash('flash_message', "The organization \"{$name}\" has been removed.");
 
 		return redirect('organizations');
 	}

@@ -40,18 +40,19 @@ class TicketsController extends Controller {
 	 */
 	public function store(TicketRequest $request)
 	{
-		$input = $request->all();
-		$input['slug'] = strtolower(str_random(10));
+		$request['slug'] = strtolower(str_random(10));
 
-		$ticket = Ticket::create($input);
-		$name = $ticket->name;
+		// create new ticket
+		$ticket = new Ticket($request->all());
+		$ticket->save();
 
 		// update users in pivot table
-		$this->syncUsers($ticket, $request->input('user_list'));
+		$this->syncUsers($ticket, $request['user_list']);
 
-		session()->flash('flash_message', 'The ticket "' . $name . '" has been created.');
+		session()->flash('flash_message', "The ticket \"{$ticket->name}\" has been created.");
 
-		if ($input['notify'] == 1)
+		// redirect to notification form
+		if ($request['notify'])
 		{
 			return redirect("tickets/{$ticket->id}/notify");
 		}
@@ -125,7 +126,7 @@ class TicketsController extends Controller {
 		$ticket->update($request->all());
 
 		// update users in pivot table
-		$this->syncUsers($ticket, $request->input('user_list'));
+		$this->syncUsers($ticket, $request['user_list']);
 
 		return redirect("tickets/{$id}");
 	}
@@ -143,7 +144,7 @@ class TicketsController extends Controller {
 
 		$ticket->delete();
 
-		session()->flash('flash_message', 'The ticket "' . $name . '" has been removed.');
+		session()->flash('flash_message', "The ticket \"{$name}\" has been removed.");
 
 		return redirect('tickets');
 	}
