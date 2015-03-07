@@ -11,19 +11,30 @@
     <hr />
 
     @forelse ($ticket->privateMessages as $message)
-        <div{{ $message->is_new ? ' id=new-message' : '' }} class="private-message{{ $message->is_new ? ' new-message' : '' }}">
-            <p>
-                <em>{{ $message->updated_at->diffForHumans() }}</em>
-            </p>
+        <div class="private-message{{ $message->is_new ? ' new-message' : '' }}">
+            <a id="private-message{{ $message->id }}" class="anchor-offset"></a>
+            <p><em>{{ $message->updated_at->diffForHumans() }}</em></p>
             <p>{{ $message->user->name }}</p>
             <p class="message">{!! nl2br(e($message->message)) !!}</p>
         </div>
         <hr />
     @empty
         <p>There are no private messages.</p>
+        <hr />
     @endforelse
 
     {!! Form::open(['action' => 'PrivateMessagesController@store', 'id' => 'private-message', ]) !!}
+
+        @unless ($errors->privateMessage->isEmpty())
+            <div class="alert-danger">
+                <a id="private-message-errors" class="anchor-offset"></a>
+                <ul>
+                    @foreach ($errors->privateMessage->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endunless
 
         <div class="form-group">
             {!! Form::label('message', 'Message:') !!}
@@ -31,8 +42,8 @@
         </div>
 
         <div class="form-group">
-            {!! Form::checkbox('notify', 1, $isUserNotified, ['id' => 'notify']) !!}
-            {!! Form::label('notify', 'Notify me when new messages are posted') !!}
+            {!! Form::checkbox('private_notify', 1, $isPrivateNotify, ['id' => 'private_notify']) !!}
+            {!! Form::label('private_notify', 'Notify me when new messages are posted') !!}
         </div>
 
         <div class="form-group">
@@ -42,7 +53,5 @@
         {!! Form::hidden('ticket_id', $ticket->id) !!}
 
     {!! Form::close() !!}
-
-    @include ('errors.form', ['errorBagName' => 'privateMessage'])
 
 @endif

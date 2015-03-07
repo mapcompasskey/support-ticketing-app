@@ -4,6 +4,17 @@
 
 {!! Form::open(['action' => 'PublicMessagesController@store', 'id' => 'public-message']) !!}
 
+    @unless ($errors->publicMessage->isEmpty())
+        <div class="alert-danger">
+            <a id="public-message-errors" class="anchor-offset"></a>
+            <ul>
+                @foreach ($errors->publicMessage->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endunless
+
     <div class="form-group">
         {!! Form::label('name', 'Name:') !!}
         {!! Form::text('name', $userName, ['class' => 'form-control']) !!}
@@ -29,8 +40,8 @@
     </div>
 
     <div class="form-group">
-        {!! Form::checkbox('notify', 1, $isNotify, ['id' => 'notify']) !!}
-        {!! Form::label('notify', 'Notify me when new messages are posted') !!}
+        {!! Form::checkbox('public_notify', 1, $isPublicNotify, ['id' => 'public_notify']) !!}
+        {!! Form::label('public_notify', 'Notify me when new messages are posted') !!}
     </div>
 
     @if (isset($action) && $action == 'list')
@@ -50,5 +61,3 @@
     {!! Form::hidden('ticket_id', $ticket->id) !!}
 
 {!! Form::close() !!}
-
-@include ('errors.form', ['errorBagName' => 'publicMessage'])

@@ -37,8 +37,8 @@ class AppServiceProvider extends ServiceProvider {
 			{
 				if ($view->getData()['ticket']->users)
 				{
-					$isUserNotified = ($view->getData()['ticket']->users->find(1) ? 1 : 0);
-					$view->with('isUserNotified', $isUserNotified);
+					$isPrivateNotify = ($view->getData()['ticket']->users->find(1) ? 1 : 0);
+					$view->with('isPrivateNotify', $isPrivateNotify);
 				}
 			}
 		});
@@ -68,7 +68,7 @@ class AppServiceProvider extends ServiceProvider {
 		{
 			$userName = null;
 			$userEmail = null;
-			$isNotify = null;
+			$isPublicNotify = null;
 
 			// if viewing a tickets page
 			$current = array_reverse(explode('/', \URL::current()));
@@ -82,10 +82,10 @@ class AppServiceProvider extends ServiceProvider {
 			// if viewing notification form
 			if ($current[0] == 'notify' && is_numeric($current[1]) && $current[2] == 'tickets')
 			{
-				$isNotify = true;
+				$isPublicNotify = true;
 			}
 
-			$view->with('userName', $userName)->with('userEmail', $userEmail)->with('isNotify', $isNotify);
+			$view->with('userName', $userName)->with('userEmail', $userEmail)->with('isPublicNotify', $isPublicNotify);
 		});
 
 		// when the view /tickets/_form is loaded

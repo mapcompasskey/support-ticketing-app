@@ -28,7 +28,7 @@
 
     {!! Form::open(['action' => 'Frontend\PublicMessagesController@store']) !!}
 
-        @if ( ! $errors->publicMessage->isEmpty())
+        @unless ($errors->publicMessage->isEmpty())
             <div class="alert-danger">
                 <a id="errors" class="anchor-offset"></a>
                 <ul>
@@ -37,7 +37,7 @@
                     @endforeach
                 </ul>
             </div>
-        @endif
+        @endunless
 
         <div class="form-group">
             {!! Form::label('name', 'Name:') !!}

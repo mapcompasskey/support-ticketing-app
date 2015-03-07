@@ -5,6 +5,13 @@ use App\Http\Requests\Request;
 class PrivateMessageRequest extends Request {
 
 	/**
+	 * The hash tag to use when redirecting with errors.
+	 *
+	 * @var string
+	 */
+	protected $hashtag = '#private-message-errors';
+
+	/**
 	 * The key to be used for the view error bag.
 	 *
 	 * @var string
@@ -43,7 +50,7 @@ class PrivateMessageRequest extends Request {
 	{
 		$url = $this->redirector->getUrlGenerator();
 
-		return $url->previous() . '#private-message';
+		return $url->previous() . $this->hashtag;
 	}
 
 }

@@ -1,15 +1,6 @@
-@if (isset($errorBagName))
-    @if ($errors->$errorBagName->any())
-        <div class="alert-danger">
-            <ul>
-                @foreach ($errors->$errorBagName->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-@elseif ($errors->any())
+@if ($errors->default->any())
     <div class="alert-danger">
+        <a id="form-errors" class="anchor-offset"></a>
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>

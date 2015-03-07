@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Ticket;
 use App\PrivateMessage;
 use App\Http\Requests\PrivateMessageRequest;
 use App\Http\Controllers\Controller;
@@ -37,28 +38,31 @@ class PrivateMessagesController extends Controller {
 	 */
 	public function store(PrivateMessageRequest $request)
 	{
-		$input = $request->all();
-		$input['user_id'] = 1;
+		$request['user_id'] = 1;
 
-		$message = PrivateMessage::create($input);
+		// get ticket
+		$ticket = Ticket::findOrFail($request['ticket_id']);
 
-		// add or remove user from receiving private message notifications
-		$ticket = \App\Ticket::find($message->ticket_id);
-		if ($request['notify'])
+		// add new private message
+		$message = new PrivateMessage($request->all());
+		$ticket->privateMessages()->save($message);
+
+		// add or remove private contact
+		if ($request['private_notify'])
 		{
-			if ( ! $ticket->users()->find($input['user_id']))
+			if ( ! $ticket->users()->find($request['user_id']))
 			{
-				$ticket->users()->attach([$input['user_id']]);
+				$ticket->users()->attach([$request['user_id']]);
 			}
 		}
 		else
 		{
-			$ticket->users()->detach([$input['user_id']]);
+			$ticket->users()->detach([$request['user_id']]);
 		}
 
 		Session::flash('new_private_message_id', $message->id);
 
-		return redirect("tickets/{$message->ticket_id}#new-message");
+		return redirect("tickets/{$ticket->id}#private-message{$message->id}");
 	}
 
 	/**

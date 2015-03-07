@@ -11,10 +11,9 @@
     <hr />
 
     @forelse ($ticket->publicMessages as $message)
-        <div{{ $message->is_new ? ' id=new-message' : '' }} class="public-message{{ $message->is_new ? ' new-message' : '' }}">
-            <p>
-                <em>{{ $message->updated_at->diffForHumans() }}</em>
-            </p>
+        <div class="public-message{{ $message->is_new ? ' new-message' : '' }}">
+            <a id="public-message{{ $message->id }}" class="anchor-offset"></a>
+            <p><em>{{ $message->updated_at->diffForHumans() }}</em></p>
             <p>
                 {{ $message->name }}
                 @if ($message->title)- <em>{{ $message->title }}</em>@endif
@@ -25,6 +24,7 @@
         <hr />
     @empty
         <p>There are no public messages.</p>
+        <hr />
     @endforelse
 
     @include ('messages.public._form', ['action' => 'list'])

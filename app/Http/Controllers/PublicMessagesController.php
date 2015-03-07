@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Ticket;
 use App\PublicMessage;
 use App\PublicContact;
 use App\Http\Requests\PublicMessageRequest;
@@ -38,22 +39,27 @@ class PublicMessagesController extends Controller {
 	 */
 	public function store(PublicMessageRequest $request, PublicContactRequest $contactRequest)
 	{
+		// get ticket
+		$ticket = Ticket::findOrFail($request['ticket_id']);
+
 		// add new public message
-		$message = PublicMessage::create($request->all());
+		$message = new PublicMessage($request->all());
+		$ticket->publicMessages()->save($message);
 
 		// add new (or update) public contact
-		if ($request['notify'])
+		if ($request['public_notify'])
 		{
 			$contact = PublicContact::firstOrNew([
 				'ticket_id' => $contactRequest['ticket_id'],
 				'email' => $contactRequest['email']
 			]);
-			$contact->fill($contactRequest->all())->save();
+			$contact->fill($contactRequest->all());
+			$ticket->publicContacts()->save($contact);
 		}
 
 		Session::flash('new_public_message_id', $message->id);
 
-		return redirect("tickets/{$message->ticket_id}#new-message");
+		return redirect("tickets/{$ticket->id}#public-message{$message->id}");
 	}
 
 	/**
