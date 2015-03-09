@@ -42,6 +42,7 @@ Route::post('private-messages', 'PrivateMessagesController@store');
 Route::post('public-messages', 'PublicMessagesController@store');
 
 // Frontend
+Route::get('x/unsubscribe/{id}/{slug}', 'Frontend\PublicContactsController@destroy');
 Route::get('x/{id}/{slug}', 'Frontend\TicketsController@show');
 Route::post('x/message', 'Frontend\PublicMessagesController@store');
 

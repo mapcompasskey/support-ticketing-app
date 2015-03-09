@@ -30,8 +30,13 @@
         <h4>Public Contacts</h4>
         @unless ($ticket->publicContacts->isEmpty())
             <ul>
+            <li>Click to unsubscribe:</li>
             @foreach ($ticket->publicContacts as $contact)
-                <li>{{ $contact->email }}</li>
+                <li>
+                    <a href="{{ action('Frontend\PublicContactsController@destroy', [$contact->id, $contact->unsubscribe_slug]) }}" target="_blank">
+                        {{ $contact->email }}
+                    </a>
+                </li>
             @endforeach
             </ul>
         @else
