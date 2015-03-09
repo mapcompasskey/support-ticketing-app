@@ -1,5 +1,6 @@
 <?php namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model {
@@ -22,7 +23,7 @@ class Ticket extends Model {
 	 *
 	 * @var array
 	 */
-	protected $dates = ['closed_at'];
+	//protected $dates = ['closed_at'];
 
 	/**
 	 * Get a list of user ids associated with the current ticket.
@@ -33,6 +34,21 @@ class Ticket extends Model {
 	public function getUserListAttribute()
 	{
 		return $this->users->lists('id');
+	}
+
+	/**
+	 * Get the closed_at attribute.
+	 *
+	 * @param $date
+	 */
+	public function getClosedAtAttribute($value)
+	{
+		$date = Carbon::parse($value);
+		if ($date->year < 0)
+		{
+			return null;
+		}
+		return $date;
 	}
 
 	/**

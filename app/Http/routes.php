@@ -30,6 +30,7 @@ Route::get('tickets/create', 'TicketsController@create');
 Route::get('tickets/{id}', 'TicketsController@show');
 Route::get('tickets/{id}/notify', 'TicketsController@notify');
 Route::get('tickets/{id}/edit', 'TicketsController@edit');
+Route::get('tickets/{id}/close', 'TicketsController@close');
 Route::get('tickets/{id}/destroy', 'TicketsController@destroy');
 Route::post('tickets', 'TicketsController@store');
 Route::post('tickets/{id}', 'TicketsController@update');

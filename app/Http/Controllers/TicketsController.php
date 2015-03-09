@@ -150,6 +150,36 @@ class TicketsController extends Controller {
 	}
 
 	/**
+	 * Toggle the closed state of the ticket.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function close($id)
+	{
+		$ticket = Ticket::findOrFail($id);
+		$name = $ticket->name;
+
+		// close the ticket
+		//if ($ticket->closed_at->year < 0)
+		if (is_null($ticket->closed_at))
+		{
+			$ticket->closed_at = date('r');
+			$ticket->save();
+			session()->flash('flash_message', "The ticket \"{$name}\" has been closed.");
+		}
+		// reopen the ticket
+		else
+		{
+			$ticket->closed_at = '0000-00-00';
+			$ticket->save();
+			session()->flash('flash_message', "The ticket \"{$name}\" has been reopened.");
+		}
+
+		return redirect("tickets/{$id}");
+	}
+
+	/**
 	 * Sync up the list of users in the database.
 	 *
 	 * @param Ticket $ticket

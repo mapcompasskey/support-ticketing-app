@@ -49,6 +49,14 @@
             <p>No distinct emails in thread.</p>
         @endunless
 
+        <p>&nbsp;</p>
+        <hr />
+        <div class="pull-right">
+            <a class="btn btn-white" href="{{ action('TicketsController@close', $ticket->id) }}">
+                {{ (is_null($ticket->closed_at) ? 'Close' : 'Reopen') }} Ticket
+            </a>
+        </div>
+
         @if ($ticket->organization)
             @include('organizations._blurb', ['organization' => $ticket->organization])
         @endif
