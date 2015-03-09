@@ -39,7 +39,8 @@ class Ticket extends Model {
 	/**
 	 * Get the closed_at attribute.
 	 *
-	 * @param $date
+	 * @param string $value
+	 * @return \Carbon\Carbon
 	 */
 	public function getClosedAtAttribute($value)
 	{

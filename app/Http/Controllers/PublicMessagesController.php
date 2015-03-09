@@ -11,26 +11,6 @@ use Illuminate\Support\Facades\Session;
 class PublicMessagesController extends Controller {
 
 	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @param PublicMessageRequest $request
@@ -42,71 +22,60 @@ class PublicMessagesController extends Controller {
 		// get ticket
 		$ticket = Ticket::findOrFail($request['ticket_id']);
 
-		// add new public message
-		$message = new PublicMessage($request->all());
-		$ticket->publicMessages()->save($message);
-
-		// add new (or update) public contact
-		if ($request['public_notify'])
-		{
-			$contact = PublicContact::firstOrNew([
-				'ticket_id' => $contactRequest['ticket_id'],
-				'email' => $contactRequest['email']
-			]);
-			$contact->fill($contactRequest->all());
-			$ticket->publicContacts()->save($contact);
-		}
-
-		Session::flash('new_public_message_id', $message->id);
+		// add new message
+		$message = $this->addNewPublicMessage($ticket, $request, $contactRequest);
 
 		return redirect("tickets/{$ticket->id}#public-message{$message->id}");
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Add a new public message.
 	 *
-	 * @param  int  $id
-	 * @return Response
+	 * @param Ticket $ticket
+	 * @param PublicMessageRequest $request
+	 * @param PublicContactRequest $contactRequest
+	 * @return PublicMessage
 	 */
-	public function show($id)
+	public function addNewPublicMessage(Ticket $ticket, PublicMessageRequest $request, PublicContactRequest $contactRequest)
 	{
-		//
+		// add a new public message
+		$message = new PublicMessage($request->all());
+		$ticket->publicMessages()->save($message);
+
+		// add a new public contact
+		$this->addNewPublicContact($ticket, $request, $contactRequest);
+
+		Session::flash('new_public_message_id', $message->id);
+
+		return $message;
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * Add a new public contact.
 	 *
-	 * @param  int  $id
-	 * @return Response
+	 * @param Ticket $ticket
+	 * @param PublicMessageRequest $request
+	 * @param PublicContactRequest $contactRequest
 	 */
-	public function edit($id)
+	public function addNewPublicContact(Ticket $ticket, PublicMessageRequest $request, PublicContactRequest $contactRequest)
 	{
-		//
-	}
+		// add new (or update) public contact
+		if ($request['public_notify'] || $request['notify'])
+		{
+			$contact = PublicContact::firstOrNew([
+				'ticket_id' => $ticket->id,
+				'email' => $contactRequest['email']
+			]);
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+			// create an unsubscribe slug if there isn't one
+			if (is_null($contact->unsubscribe_slug))
+			{
+				$contactRequest['unsubscribe_slug'] = rand(1000000000, 9999999999);
+			}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		// i need to add a unique string for the unsubscribe link
-		// i'll give them an "unsubscribe" link in the email message
-		// that will open a page and match their email and the unique
-		// string against the database to the `ticket_contacts` to remove
+			$contact->fill($contactRequest->all());
+			$ticket->publicContacts()->save($contact);
+		}
 	}
 
 }

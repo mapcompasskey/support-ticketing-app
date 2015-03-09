@@ -17,6 +17,7 @@ class CreatePublicContacts extends Migration {
 			$table->increments('id');
 			$table->integer('ticket_id')->unsigned();
 			$table->string('email');
+			$table->string('unsubscribe_slug', 10);
 			$table->timestamps();
 
 			$table->foreign('ticket_id')

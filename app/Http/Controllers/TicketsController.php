@@ -161,7 +161,6 @@ class TicketsController extends Controller {
 		$name = $ticket->name;
 
 		// close the ticket
-		//if ($ticket->closed_at->year < 0)
 		if (is_null($ticket->closed_at))
 		{
 			$ticket->closed_at = date('r');
