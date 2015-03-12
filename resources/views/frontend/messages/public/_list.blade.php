@@ -18,6 +18,13 @@
                 - {{ $message->email }}
             </p>
             <p class="message">{!! nl2br(e($message->message)) !!}</p>
+            @foreach ($message->files as $file)
+                <p>
+                    <a href="{{ action('PublicMessageFilesController@show', $file->name) }}" target="_blank">
+                        {{ $file->name }}
+                    </a>
+                </p>
+            @endforeach
         </div>
         <hr />
     @empty
@@ -26,7 +33,7 @@
         <hr />
     @endforelse
 
-    {!! Form::open(['action' => 'Frontend\PublicMessagesController@store']) !!}
+    {!! Form::open(['action' => 'Frontend\PublicMessagesController@store', 'files' => true]) !!}
 
         @unless ($errors->publicMessage->isEmpty())
             <div class="alert-danger">
@@ -57,6 +64,11 @@
         <div class="form-group">
             {!! Form::label('message', 'Message:') !!}
             {!! Form::textarea('message', null, ['class' => 'form-control']) !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('file', 'Attach a file:') !!}
+            {!! Form::file('file', null, ['class' => 'form-control']) !!}
         </div>
 
         <div class="form-group">

@@ -38,7 +38,17 @@ class PublicMessage extends Model {
 	}
 
 	/**
-	 * A message is owned by a ticket
+	 * A message has many files.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function files()
+	{
+		return $this->hasMany('App\PublicMessageFile');
+	}
+
+	/**
+	 * A message is owned by a ticket.
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */

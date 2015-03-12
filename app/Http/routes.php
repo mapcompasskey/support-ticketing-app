@@ -46,6 +46,9 @@ Route::get('x/unsubscribe/{id}/{slug}', 'Frontend\PublicContactsController@destr
 Route::get('x/{id}/{slug}', 'Frontend\TicketsController@show');
 Route::post('x/message', 'Frontend\PublicMessagesController@store');
 
+// Output Files
+Route::get('files/{name}', 'PublicMessageFilesController@show');
+
 //Route::controllers([
 //	'auth' => 'Auth\AuthController',
 //	'password' => 'Auth\PasswordController',
