@@ -20,7 +20,7 @@
             <p class="message">{!! nl2br(e($message->message)) !!}</p>
             @foreach ($message->files as $file)
                 <p>
-                    <a href="{{ action('PublicMessageFilesController@show', $file->name) }}" target="_blank">
+                    <a href="{{ action('PublicMessageFilesController@show', $file->filename) }}" target="_blank">
                         {{ $file->name }}
                     </a>
                 </p>

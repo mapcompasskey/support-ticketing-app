@@ -2,10 +2,9 @@
 
 use App\Http\Requests;
 use App\PublicMessageFile;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;;
+use Illuminate\Http\Request;
 
 class PublicMessageFilesController extends Controller {
 
@@ -42,19 +41,24 @@ class PublicMessageFilesController extends Controller {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int $name
+	 * @param  int $filename
 	 * @return Response
 	 */
-	public function show($name)
+	public function show($filename)
 	{
-		$publicMessageFile = PublicMessageFile::whereName($name)->firstOrFail();
-		$file = Storage::disk('local')->get($publicMessageFile->name);
+		$publicMessageFile = PublicMessageFile::whereFilename($filename)->firstOrFail();
 
-		$headers = array(
-			'Content-type'        => $publicMessageFile->mime,
-			'Content-Disposition' => 'attachment; filename="' . $publicMessageFile->name . '"'
-		);
-		return Response::make($file, 200, $headers);
+		//$file = Storage::disk('local')->get($publicMessageFile->filename);
+		$file = Storage::get($publicMessageFile->filename);
+
+		//$headers = array(
+		//	'Content-type'        => $publicMessageFile->mime,
+		//	'Content-Disposition' => 'attachment; filename="' . $publicMessageFile->filename . '"'
+		//);
+		//return Response::make($file, 200, $headers);
+		//return response($file, 200, $headers);
+
+		return response($file, 200, ['Content-type' => $publicMessageFile->mime]);
 	}
 
 	/**

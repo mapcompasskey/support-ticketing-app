@@ -24,40 +24,50 @@ class PublicMessagesController extends BaseController {
         $ticket = Ticket::whereId($request['ticket_id'])->whereSlug($request['ticket_slug'])->firstOrFail();
 
         // add new message
-        //$message = $this->addNewPublicMessage($ticket, $request, $contactRequest);
+        $message = $this->addNewPublicMessage($ticket, $request, $contactRequest);
 
-        // if there is a file
+        // if a file was uploaded
         if ($request->file('file'))
         {
-            $file         = $request->file('file');
-            $baseFilename = $file->getClientOriginalName();
-            $extension    = $file->getClientOriginalExtension();
-            $filename     = $baseFilename . '.' . $extension;
-            $number       = 0;
-
-            if (Storage::exists($filename))
+            $file = $request->file('file');
+            $extension = $file->getClientOriginalExtension();
+            if ($extension != '')
             {
-                do {
-                    $filename = $baseFilename . '-' . ++$number . '.' . $extension;
+                // get the file's name
+                $name = $file->getClientOriginalName();
+                //$name = substr($name, 0, strrpos($name, '.'));
+
+                // clean up the filename
+                $baseFilename = $file->getClientOriginalName();
+                $baseFilename = strtolower($baseFilename);
+                $baseFilename = substr($baseFilename, 0, strrpos($baseFilename, '.'));
+                $baseFilename = substr($baseFilename, 0, 200);
+                $baseFilename = preg_replace('/[ \.\_]+/i', '-',$baseFilename);
+                $baseFilename = preg_replace('/[^a-z0-9\-]+/i', '',$baseFilename);
+                $baseFilename = date('Y-m-d-') . $baseFilename;
+
+                // make sure the filename is unique
+                $filename = $baseFilename . '.' . $extension;
+                if (Storage::exists($filename))
+                {
+                    $number = 0;
+                    do {
+                        $filename = $baseFilename . '-' . ++$number . '.' . $extension;
+                    } while (Storage::exists($filename));
                 }
-                while (Storage::exists($filename));
+
+                // save new file to storage
+                //Storage::disk('local')->put($filename, File::get($file));
+                Storage::put($filename, File::get($file));
+
+                // save new file to database
+                $publicMessageFile = new PublicMessageFile();
+                $publicMessageFile->name = $name;
+                $publicMessageFile->filename = $filename;
+                $publicMessageFile->mime = $file->getClientMimeType();
+                $message->files()->save($publicMessageFile);
             }
-
-            echo '<pre>' . $file . '</pre>';
-            echo '<pre>' . $baseFilename . '</pre>';
-            echo '<pre>' . $extension . '</pre>';
-            echo '<pre>' . $filename . '</pre>';
-            dd($file);
-            Storage::disk('local')->put($filename, File::get($file));
-
-            //$publicMessageFile = new PublicMessageFile();
-            //$publicMessageFile->name     = $file->getClientOriginalName();
-            //$publicMessageFile->filename = $filename;
-            //$publicMessageFile->mime     = $file->getClientMimeType();
-
-            //$message->files()->save($publicMessageFile);
         }
-        exit;
 
         return redirect("x/{$ticket->id}/{$ticket->slug}#msg{$message->id}");
     }

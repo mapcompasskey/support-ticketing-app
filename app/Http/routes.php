@@ -47,7 +47,7 @@ Route::get('x/{id}/{slug}', 'Frontend\TicketsController@show');
 Route::post('x/message', 'Frontend\PublicMessagesController@store');
 
 // Output Files
-Route::get('files/{name}', 'PublicMessageFilesController@show');
+Route::get('files/{filename}', 'PublicMessageFilesController@show');
 
 //Route::controllers([
 //	'auth' => 'Auth\AuthController',
@@ -55,8 +55,14 @@ Route::get('files/{name}', 'PublicMessageFilesController@show');
 //]);
 
 // check for N+1 query problems
+// unless a file is being output
 Event::listen('illuminate.query', function($sql)
 {
-	//var_dump($sql);
-	echo '<pre>' . print_r($sql, true) . '</pre>';
+	if (Route::getCurrentRoute())
+	{
+		if (Route::getCurrentRoute()->getPath() != 'files/{filename}') {
+			//var_dump($sql);
+			echo '<pre>' . print_r($sql, true) . '</pre>';
+		}
+	}
 });
