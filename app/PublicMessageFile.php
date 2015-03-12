@@ -21,7 +21,7 @@ class PublicMessageFile extends Model {
 	 *
 	 * @return string
 	 */
-	public function getPreviewAttribute(),
+	public function getPreviewAttribute()
 	{
 		$mime = explode('/', $this->attributes['mime']);
 		if ($mime[0] == 'image')
