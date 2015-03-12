@@ -51,14 +51,17 @@ class PublicMessageFilesController extends Controller {
 		//$file = Storage::disk('local')->get($publicMessageFile->filename);
 		$file = Storage::get($publicMessageFile->filename);
 
-		//$headers = array(
-		//	'Content-type'        => $publicMessageFile->mime,
-		//	'Content-Disposition' => 'attachment; filename="' . $publicMessageFile->filename . '"'
-		//);
-		//return Response::make($file, 200, $headers);
-		//return response($file, 200, $headers);
+		$headers = array();
+		$headers['Content-type'] = $publicMessageFile->mime;
 
-		return response($file, 200, ['Content-type' => $publicMessageFile->mime]);
+		// force a download if not an image
+		if ($publicMessageFile->filetype != 'image')
+		{
+			$headers['Content-Disposition'] = 'attachment; filename="' . $publicMessageFile->filename . '"';
+		}
+
+		//return Response::make($file, 200, $headers);
+		return response($file, 200, $headers);
 	}
 
 	/**

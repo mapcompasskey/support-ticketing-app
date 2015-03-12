@@ -17,19 +17,29 @@ class PublicMessageFile extends Model {
 	];
 
 	/**
-	 * Accessor for returning the preview thumbnail based on the mime type.
+	 * Accessor for returning the preview thumbnail based on the file type.
 	 *
 	 * @return string
 	 */
 	public function getPreviewAttribute()
 	{
-		$mime = explode('/', $this->attributes['mime']);
-		if ($mime[0] == 'image')
+		if ($this->filetype == 'image')
 		{
-			return '<img src="/files/' . $this->attributes['filename'] . '" width="100px;" />';
+			return '<img src="/files/' . $this->filename . '" width="100px;" />';
 		}
 
 		return '<span class="glyphicon glyphicon-file" style="font-size:50px;"></span>';
+	}
+
+	/**
+	 * Accessor for returning the file type based on the mime.
+	 *
+	 * @return string
+	 */
+	public function getFiletypeAttribute()
+	{
+		$mime = explode('/', $this->attributes['mime']);
+		return $mime[0];
 	}
 
 	/**
