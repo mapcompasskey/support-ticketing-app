@@ -10,9 +10,14 @@ class EventServiceProvider extends ServiceProvider {
 	 *
 	 * @var array
 	 */
+	//protected $listen = [
+	//	'event.name' => [
+	//		'EventListener',
+	//	],
+	//];
 	protected $listen = [
-		'event.name' => [
-			'EventListener',
+		'App\Events\PublicMessageFileWasPosted' => [
+			'App\Handlers\Events\UploadPublicMessageFile',
 		],
 	];
 

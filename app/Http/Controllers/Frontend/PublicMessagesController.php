@@ -1,16 +1,12 @@
 <?php namespace App\Http\Controllers\Frontend;
 
-use App\PublicMessageFile;
 use App\Ticket;
+use App\PublicMessageFile;
 use App\Http\Requests\PublicMessageRequest;
 use App\Http\Requests\PublicContactRequest;
-use App\Http\Controllers\PublicMessagesController as BaseController;
-
 use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
-use App\Events\PublicMessageFileWasSubmitted;
-use App\Commands\UploadPublicMessageFileCommand;
+use App\Events\PublicMessageFileWasPosted;
+use App\Http\Controllers\PublicMessagesController as BaseController;
 
 class PublicMessagesController extends BaseController {
 
@@ -26,65 +22,25 @@ class PublicMessagesController extends BaseController {
         // get ticket
         $ticket = Ticket::whereId($request['ticket_id'])->whereSlug($request['ticket_slug'])->firstOrFail();
 
+        // if a file was posted
+        $publicMessageFile = false;
+        if ($request->file('file'))
+        {
+            $file = Event::fire(new PublicMessageFileWasPosted($request->file('file')));
+            if ($file && $file[0])
+            {
+                $publicMessageFile = new PublicMessageFile();
+                $publicMessageFile->fill($file[0]);
+            }
+        }
+
         // add new message
         $message = $this->addNewPublicMessage($ticket, $request, $contactRequest);
 
-        // if a file was uploaded
-        if ($request->file('file'))
+        // add new file
+        if ($publicMessageFile)
         {
-            //Event::listen('publicMessageFileWasUploaded', function($publicMessage, $name, $filename, $mime)
-            //{
-            //    //dd('publicMessageFileWasUploaded: ' . $name . ' ' . $filename . ' ' . $mime);
-            //    // save new file to database
-            //    $publicMessageFile = new PublicMessageFile();
-            //    $publicMessageFile->name = $name;
-            //    $publicMessageFile->filename = $filename;
-            //    $publicMessageFile->mime = $mime;
-            //    $publicMessage->files()->save($publicMessageFile);
-            //});
-
-            $this->dispatch(new UploadPublicMessageFileCommand($message, $request->file('file')));
-
-            //$response = Event::fire(new PublicMessageFileWasSubmitted($request->file('file')));
-
-            //$file = $request->file('file');
-            //$extension = $file->getClientOriginalExtension();
-            //if ($extension != '')
-            //{
-            //    // get the file's name
-            //    $name = $file->getClientOriginalName();
-            //    //$name = substr($name, 0, strrpos($name, '.'));
-            //
-            //    // clean up the filename
-            //    $baseFilename = $file->getClientOriginalName();
-            //    $baseFilename = strtolower($baseFilename);
-            //    $baseFilename = substr($baseFilename, 0, strrpos($baseFilename, '.'));
-            //    $baseFilename = substr($baseFilename, 0, 200);
-            //    $baseFilename = preg_replace('/[ \.\_]+/i', '-',$baseFilename);
-            //    $baseFilename = preg_replace('/[^a-z0-9\-]+/i', '',$baseFilename);
-            //    $baseFilename = date('Y-m-d-') . $baseFilename;
-            //
-            //    // make sure the filename is unique
-            //    $filename = $baseFilename . '.' . $extension;
-            //    if (Storage::exists($filename))
-            //    {
-            //        $number = 0;
-            //        do {
-            //            $filename = $baseFilename . '-' . ++$number . '.' . $extension;
-            //        } while (Storage::exists($filename));
-            //    }
-            //
-            //    // save new file to storage
-            //    //Storage::disk('local')->put($filename, File::get($file));
-            //    Storage::put($filename, File::get($file));
-            //
-            //    // save new file to database
-            //    $publicMessageFile = new PublicMessageFile();
-            //    $publicMessageFile->name = $name;
-            //    $publicMessageFile->filename = $filename;
-            //    $publicMessageFile->mime = $file->getClientMimeType();
-            //    $message->files()->save($publicMessageFile);
-            //}
+            $message->files()->save($publicMessageFile);
         }
 
         return redirect("x/{$ticket->id}/{$ticket->slug}#msg{$message->id}");
