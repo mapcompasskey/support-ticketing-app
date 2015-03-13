@@ -17,7 +17,7 @@ class PublicMessageFilesController extends Controller {
 	public function show($filename)
 	{
 		$publicMessageFile = PublicMessageFile::whereFilename($filename)->firstOrFail();
-		$file = Storage::get('messages/public/' . $publicMessageFile->filename);
+		$file = Storage::get($publicMessageFile->filepath);
 
 		$headers = array();
 		$headers['Content-type'] = $publicMessageFile->mime;

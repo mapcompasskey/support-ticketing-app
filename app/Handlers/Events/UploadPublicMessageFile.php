@@ -43,13 +43,13 @@ class UploadPublicMessageFile {
 
 			// make sure the filename is unique
 			$filename = $baseFilename . '.' . $extension;
-			$filepath = 'messages/public/' . $filename;
+			$filepath = $event->publicMessageFile->directory . $filename;
 			if (Storage::exists($filepath))
 			{
 				$number = 0;
 				do {
 					$filename = $baseFilename . '-' . ++$number . '.' . $extension;
-					$filepath = 'messages/public/' . $filename;
+					$filepath = $event->publicMessageFile->directory . $filename;
 				} while (Storage::exists($filepath));
 			}
 

@@ -17,6 +17,13 @@ class PublicMessageFile extends Model {
 	];
 
 	/**
+	 * The directory where these files are stored.
+	 *
+	 * @var array
+	 */
+	public $directory = 'messages/public/';
+
+	/**
 	 * Accessor for returning the preview thumbnail based on the file type.
 	 *
 	 * @return string
@@ -25,8 +32,7 @@ class PublicMessageFile extends Model {
 	{
 		if ($this->filetype == 'image')
 		{
-			//return '<img src="/files/' . $this->filename . '" width="100px;" />';
-			return '<img src="/images/messages/public/' . $this->filename . '" />';
+			return '<img src="/images/' . $this->filepath . '" />';
 		}
 
 		return '<span class="glyphicon glyphicon-file" style="font-size:50px;"></span>';
@@ -41,6 +47,16 @@ class PublicMessageFile extends Model {
 	{
 		$mime = explode('/', $this->attributes['mime']);
 		return $mime[0];
+	}
+
+	/**
+	 * Accessor for returning the directory and filename.
+	 *
+	 * @return string
+	 */
+	public function getFilepathAttribute()
+	{
+		return $this->directory . $this->filename;
 	}
 
 	/**
