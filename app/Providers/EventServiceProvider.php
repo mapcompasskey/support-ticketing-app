@@ -18,6 +18,7 @@ class EventServiceProvider extends ServiceProvider {
 	protected $listen = [
 		'App\Events\PublicMessageFileWasPosted' => [
 			'App\Handlers\Events\UploadPublicMessageFile',
+			'App\Handlers\Events\CreatePublicMessageFileThumbnail',
 		],
 	];
 

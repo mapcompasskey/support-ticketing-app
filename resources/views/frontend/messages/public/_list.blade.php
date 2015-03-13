@@ -49,7 +49,7 @@
 
         <div class="form-group">
             {!! Form::label('name', 'Name:') !!}
-            {!! Form::text('name', null, ['class' => 'form-control']) !!}
+            {!! Form::text('name', 'jordan', ['class' => 'form-control']) !!}
         </div>
 
         <div class="form-group">
@@ -59,12 +59,12 @@
 
         <div class="form-group">
             {!! Form::label('email', 'Email:') !!}
-            {!! Form::text('email', null, ['class' => 'form-control']) !!}
+            {!! Form::text('email', 'jordan@smallbox.com', ['class' => 'form-control']) !!}
         </div>
 
         <div class="form-group">
             {!! Form::label('message', 'Message:') !!}
-            {!! Form::textarea('message', null, ['class' => 'form-control']) !!}
+            {!! Form::textarea('message', 'hey hey', ['class' => 'form-control']) !!}
         </div>
 
         <div class="form-group">

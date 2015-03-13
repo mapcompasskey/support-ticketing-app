@@ -27,10 +27,12 @@ class PublicMessagesController extends BaseController {
         if ($request->file('file'))
         {
             $file = Event::fire(new PublicMessageFileWasPosted($request->file('file')));
-            if ($file && $file[0])
+            if ($file)
             {
-                $publicMessageFile = new PublicMessageFile();
-                $publicMessageFile->fill($file[0]);
+                if (get_class($file[0]) == 'App\PublicMessageFile')
+                {
+                    $publicMessageFile = $file[0];
+                }
             }
         }
 

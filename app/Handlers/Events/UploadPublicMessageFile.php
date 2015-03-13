@@ -59,7 +59,18 @@ class UploadPublicMessageFile {
 			//Storage::disk('local')->put($filename, File::get($file));
 			Storage::put($filename, File::get($event->uploadedFile));
 
-			return array('name' => $name, 'filename' => $filename, 'mime' => $mime);
+			//$event->imageName     = $name;
+			//$event->imageFilename = $filename;
+			//$event->imageMime     = $mime;
+
+			//return array('name' => $name, 'filename' => $filename, 'mime' => $mime);
+
+			$event->imageFilename = $filename;
+			$publicMessageFile = new \App\PublicMessageFile();
+			$publicMessageFile->name     = $name;
+			$publicMessageFile->filename = $filename;
+			$publicMessageFile->mime     = $mime;
+			return $publicMessageFile;
 		}
 
 		return false;

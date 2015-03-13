@@ -145,6 +145,7 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 		'Illuminate\Html\HtmlServiceProvider',
+		'Intervention\Image\ImageServiceProvider',
 
 	],
 
@@ -195,6 +196,7 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Form' 		=> 'Illuminate\Html\FormFacade',
 		'Html' 		=> 'Illuminate\Html\HtmlFacade',
+		'Image' => 'Intervention\Image\Facades\Image',
 
 	],
 

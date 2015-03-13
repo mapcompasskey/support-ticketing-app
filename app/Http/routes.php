@@ -60,7 +60,8 @@ Event::listen('illuminate.query', function($sql)
 {
 	if (Route::getCurrentRoute())
 	{
-		if (Route::getCurrentRoute()->getPath() != 'files/{filename}') {
+		if (Route::getCurrentRoute()->getPath() != 'files/{filename}')
+		{
 			//var_dump($sql);
 			echo '<pre>' . print_r($sql, true) . '</pre>';
 		}

@@ -9,6 +9,9 @@ class PublicMessageFileWasPosted extends Event {
 	use SerializesModels;
 
 	public $uploadedFile;
+	public $imageName;
+	public $imageFilename;
+	public $imageMime;
 
 	/**
 	 * Create a new event instance.
