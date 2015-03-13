@@ -31,7 +31,6 @@ class UploadPublicMessageFile {
 		{
 			// get the file's name
 			$name = $event->uploadedFile->getClientOriginalName();
-			//$name = substr($name, 0, strrpos($name, '.'));
 
 			// clean up the filename
 			$baseFilename = $event->uploadedFile->getClientOriginalName();
@@ -44,36 +43,27 @@ class UploadPublicMessageFile {
 
 			// make sure the filename is unique
 			$filename = $baseFilename . '.' . $extension;
-			if (Storage::exists($filename))
+			$filepath = 'messages/public/' . $filename;
+			if (Storage::exists($filepath))
 			{
 				$number = 0;
 				do {
 					$filename = $baseFilename . '-' . ++$number . '.' . $extension;
-				} while (Storage::exists($filename));
+					$filepath = 'messages/public/' . $filename;
+				} while (Storage::exists($filepath));
 			}
 
 			// get the mime type
 			$mime = $event->uploadedFile->getClientMimeType();
 
 			// save new file to storage
-			//Storage::disk('local')->put($filename, File::get($file));
-			Storage::put($filename, File::get($event->uploadedFile));
+			Storage::put($filepath, File::get($event->uploadedFile));
 
-			//$event->imageName     = $name;
-			//$event->imageFilename = $filename;
-			//$event->imageMime     = $mime;
-
-			//return array('name' => $name, 'filename' => $filename, 'mime' => $mime);
-
-			$event->imageFilename = $filename;
-			$publicMessageFile = new \App\PublicMessageFile();
-			$publicMessageFile->name     = $name;
-			$publicMessageFile->filename = $filename;
-			$publicMessageFile->mime     = $mime;
-			return $publicMessageFile;
+			// update the eloquent model
+			$event->publicMessageFile->name     = $name;
+			$event->publicMessageFile->filename = $filename;
+			$event->publicMessageFile->mime     = $mime;
 		}
-
-		return false;
 	}
 
 }

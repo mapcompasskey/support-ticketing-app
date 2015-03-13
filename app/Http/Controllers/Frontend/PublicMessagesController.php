@@ -23,24 +23,18 @@ class PublicMessagesController extends BaseController {
         $ticket = Ticket::whereId($request['ticket_id'])->whereSlug($request['ticket_slug'])->firstOrFail();
 
         // if a file was posted
-        $publicMessageFile = false;
+        $publicMessageFile = new PublicMessageFile();
         if ($request->file('file'))
         {
-            $file = Event::fire(new PublicMessageFileWasPosted($request->file('file')));
-            if ($file)
-            {
-                if (get_class($file[0]) == 'App\PublicMessageFile')
-                {
-                    $publicMessageFile = $file[0];
-                }
-            }
+            // save the file into storage and update the eloquent model
+            Event::fire(new PublicMessageFileWasPosted($request->file('file'), $publicMessageFile));
         }
 
         // add new message
         $message = $this->addNewPublicMessage($ticket, $request, $contactRequest);
 
         // add new file
-        if ($publicMessageFile)
+        if ($publicMessageFile->toArray())
         {
             $message->files()->save($publicMessageFile);
         }

@@ -9,9 +9,7 @@ class PublicMessageFileWasPosted extends Event {
 	use SerializesModels;
 
 	public $uploadedFile;
-	public $imageName;
-	public $imageFilename;
-	public $imageMime;
+	public $publicMessageFile;
 
 	/**
 	 * Create a new event instance.
@@ -19,9 +17,10 @@ class PublicMessageFileWasPosted extends Event {
 	 * @params $uploadedFile
 	 * @return void
 	 */
-	public function __construct($uploadedFile)
+	public function __construct($uploadedFile, $publicMessageFile)
 	{
 		$this->uploadedFile = $uploadedFile;
+		$this->publicMessageFile = $publicMessageFile;
 	}
 
 }

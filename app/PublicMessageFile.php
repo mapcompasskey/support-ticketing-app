@@ -25,7 +25,8 @@ class PublicMessageFile extends Model {
 	{
 		if ($this->filetype == 'image')
 		{
-			return '<img src="/files/' . $this->filename . '" width="100px;" />';
+			//return '<img src="/files/' . $this->filename . '" width="100px;" />';
+			return '<img src="/images/messages/public/' . $this->filename . '" />';
 		}
 
 		return '<span class="glyphicon glyphicon-file" style="font-size:50px;"></span>';
@@ -50,6 +51,16 @@ class PublicMessageFile extends Model {
 	public function publicMessage()
 	{
 		return $this->belongsTo('App\PublicMessage');
+	}
+
+	/**
+	 * Check whether the file is an image.
+	 *
+	 * @return boolean
+	 */
+	public function isImage()
+	{
+		return ($this->filetype == 'image' ? true : false);
 	}
 
 }
