@@ -6,8 +6,11 @@ use App\Http\Requests\PublicMessageRequest;
 use App\Http\Requests\PublicContactRequest;
 use App\Http\Controllers\PublicMessagesController as BaseController;
 
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use App\Events\PublicMessageFileWasSubmitted;
+use App\Commands\UploadPublicMessageFileCommand;
 
 class PublicMessagesController extends BaseController {
 
@@ -29,44 +32,59 @@ class PublicMessagesController extends BaseController {
         // if a file was uploaded
         if ($request->file('file'))
         {
-            $file = $request->file('file');
-            $extension = $file->getClientOriginalExtension();
-            if ($extension != '')
-            {
-                // get the file's name
-                $name = $file->getClientOriginalName();
-                //$name = substr($name, 0, strrpos($name, '.'));
+            //Event::listen('publicMessageFileWasUploaded', function($publicMessage, $name, $filename, $mime)
+            //{
+            //    //dd('publicMessageFileWasUploaded: ' . $name . ' ' . $filename . ' ' . $mime);
+            //    // save new file to database
+            //    $publicMessageFile = new PublicMessageFile();
+            //    $publicMessageFile->name = $name;
+            //    $publicMessageFile->filename = $filename;
+            //    $publicMessageFile->mime = $mime;
+            //    $publicMessage->files()->save($publicMessageFile);
+            //});
 
-                // clean up the filename
-                $baseFilename = $file->getClientOriginalName();
-                $baseFilename = strtolower($baseFilename);
-                $baseFilename = substr($baseFilename, 0, strrpos($baseFilename, '.'));
-                $baseFilename = substr($baseFilename, 0, 200);
-                $baseFilename = preg_replace('/[ \.\_]+/i', '-',$baseFilename);
-                $baseFilename = preg_replace('/[^a-z0-9\-]+/i', '',$baseFilename);
-                $baseFilename = date('Y-m-d-') . $baseFilename;
+            $this->dispatch(new UploadPublicMessageFileCommand($message, $request->file('file')));
 
-                // make sure the filename is unique
-                $filename = $baseFilename . '.' . $extension;
-                if (Storage::exists($filename))
-                {
-                    $number = 0;
-                    do {
-                        $filename = $baseFilename . '-' . ++$number . '.' . $extension;
-                    } while (Storage::exists($filename));
-                }
+            //$response = Event::fire(new PublicMessageFileWasSubmitted($request->file('file')));
 
-                // save new file to storage
-                //Storage::disk('local')->put($filename, File::get($file));
-                Storage::put($filename, File::get($file));
-
-                // save new file to database
-                $publicMessageFile = new PublicMessageFile();
-                $publicMessageFile->name = $name;
-                $publicMessageFile->filename = $filename;
-                $publicMessageFile->mime = $file->getClientMimeType();
-                $message->files()->save($publicMessageFile);
-            }
+            //$file = $request->file('file');
+            //$extension = $file->getClientOriginalExtension();
+            //if ($extension != '')
+            //{
+            //    // get the file's name
+            //    $name = $file->getClientOriginalName();
+            //    //$name = substr($name, 0, strrpos($name, '.'));
+            //
+            //    // clean up the filename
+            //    $baseFilename = $file->getClientOriginalName();
+            //    $baseFilename = strtolower($baseFilename);
+            //    $baseFilename = substr($baseFilename, 0, strrpos($baseFilename, '.'));
+            //    $baseFilename = substr($baseFilename, 0, 200);
+            //    $baseFilename = preg_replace('/[ \.\_]+/i', '-',$baseFilename);
+            //    $baseFilename = preg_replace('/[^a-z0-9\-]+/i', '',$baseFilename);
+            //    $baseFilename = date('Y-m-d-') . $baseFilename;
+            //
+            //    // make sure the filename is unique
+            //    $filename = $baseFilename . '.' . $extension;
+            //    if (Storage::exists($filename))
+            //    {
+            //        $number = 0;
+            //        do {
+            //            $filename = $baseFilename . '-' . ++$number . '.' . $extension;
+            //        } while (Storage::exists($filename));
+            //    }
+            //
+            //    // save new file to storage
+            //    //Storage::disk('local')->put($filename, File::get($file));
+            //    Storage::put($filename, File::get($file));
+            //
+            //    // save new file to database
+            //    $publicMessageFile = new PublicMessageFile();
+            //    $publicMessageFile->name = $name;
+            //    $publicMessageFile->filename = $filename;
+            //    $publicMessageFile->mime = $file->getClientMimeType();
+            //    $message->files()->save($publicMessageFile);
+            //}
         }
 
         return redirect("x/{$ticket->id}/{$ticket->slug}#msg{$message->id}");
