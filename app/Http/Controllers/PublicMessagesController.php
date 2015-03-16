@@ -32,7 +32,7 @@ class PublicMessagesController extends Controller {
 	}
 
 	/**
-	 * Add a new public message.
+	 * Add a new public message, public message file(s), and a public contact.
 	 *
 	 * @param Ticket $ticket
 	 * @param PublicMessageRequest $request
@@ -76,7 +76,7 @@ class PublicMessagesController extends Controller {
 	 */
 	public function addNewPublicContact(Ticket $ticket, PublicMessageRequest $request, PublicContactRequest $contactRequest)
 	{
-		// add new (or update) public contact
+		// add a new (or update) public contact
 		if ($request['public_notify'] || $request['notify'])
 		{
 			$contact = PublicContact::firstOrNew([

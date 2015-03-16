@@ -112,7 +112,7 @@ class AppServiceProvider extends ServiceProvider {
 			$view->with('organizationId', $organizationId)->with('userIds', $userIds);
 		});
 
-		// when the view /frontned/messages/public/_list is loaded
+		// when the view /frontend/messages/public/_list is loaded
 		view()->composer('frontend.messages.public._list', function($view)
 		{
 			// check if a new public message was just created

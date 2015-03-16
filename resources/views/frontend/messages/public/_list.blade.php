@@ -38,7 +38,7 @@
 
         @unless ($errors->publicMessage->isEmpty())
             <div class="alert-danger">
-                <a id="errors" class="anchor-offset"></a>
+                <a id="public-message-errors" class="anchor-offset"></a>
                 <ul>
                     @foreach ($errors->publicMessage->all() as $error)
                         <li>{{ $error }}</li>

@@ -2,7 +2,7 @@
     $userName, $userEmail, and $isNotify are set from /app/Providers/AppServiceProvider.php
 --}}
 
-{!! Form::open(['action' => 'PublicMessagesController@store', 'id' => 'public-message']) !!}
+{!! Form::open(['action' => 'PublicMessagesController@store', 'id' => 'public-message', 'files' => true]) !!}
 
     @unless ($errors->publicMessage->isEmpty())
         <div class="alert-danger">
@@ -37,6 +37,11 @@
         @elseif (isset($action) && $action == 'notify')
             {!! Form::textarea('message', "http://support.public.localhost/support/{$ticket->id}/{$ticket->slug}&#13;&#10;Thanks for submitting a request. You can track its progress and interact with us using the url provided.&#13;&#10;&#13;&#10;Jordan Wilson&#13;&#10;jordan@smallbox.com", ['class' => 'form-control']) !!}
         @endif
+    </div>
+
+    <div class="form-group">
+        {!! Form::label('file', 'Attach a file:') !!}
+        {!! Form::file('file', null, ['class' => 'form-control']) !!}
     </div>
 
     <div class="form-group">
