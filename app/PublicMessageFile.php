@@ -50,6 +50,16 @@ class PublicMessageFile extends Model {
 	}
 
 	/**
+	 * Check whether the file is an image.
+	 *
+	 * @return boolean
+	 */
+	public function isImage()
+	{
+		return ($this->filetype == 'image' ? true : false);
+	}
+
+	/**
 	 * Accessor for returning the directory and filename.
 	 *
 	 * @return string
@@ -67,16 +77,6 @@ class PublicMessageFile extends Model {
 	public function publicMessage()
 	{
 		return $this->belongsTo('App\PublicMessage');
-	}
-
-	/**
-	 * Check whether the file is an image.
-	 *
-	 * @return boolean
-	 */
-	public function isImage()
-	{
-		return ($this->filetype == 'image' ? true : false);
 	}
 
 }

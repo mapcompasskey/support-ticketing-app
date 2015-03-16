@@ -3,8 +3,11 @@
 use App\Ticket;
 use App\PublicMessage;
 use App\PublicContact;
+use App\PublicMessageFile;
 use App\Http\Requests\PublicMessageRequest;
 use App\Http\Requests\PublicContactRequest;
+use Illuminate\Support\Facades\Event;
+use App\Events\PublicMessageFileWasPosted;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
@@ -38,9 +41,23 @@ class PublicMessagesController extends Controller {
 	 */
 	public function addNewPublicMessage(Ticket $ticket, PublicMessageRequest $request, PublicContactRequest $contactRequest)
 	{
+		// if a file was posted
+		$publicMessageFile = new PublicMessageFile();
+		if ($request->file('file'))
+		{
+			// save the file into storage and update the eloquent model
+			Event::fire(new PublicMessageFileWasPosted($request->file('file'), $publicMessageFile));
+		}
+
 		// add a new public message
 		$message = new PublicMessage($request->all());
 		$ticket->publicMessages()->save($message);
+
+		// add new file
+		if ($publicMessageFile->toArray())
+		{
+			$message->files()->save($publicMessageFile);
+		}
 
 		// add a new public contact
 		$this->addNewPublicContact($ticket, $request, $contactRequest);

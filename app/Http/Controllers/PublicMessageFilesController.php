@@ -22,7 +22,7 @@ class PublicMessageFilesController extends Controller {
 		$headers = array();
 		$headers['Content-type'] = $publicMessageFile->mime;
 
-		// force the file download if its not an image
+		// force the file to download if its not an image
 		if ( ! $publicMessageFile->isImage())
 		{
 			$headers['Content-Disposition'] = 'attachment; filename="' . $publicMessageFile->filename . '"';

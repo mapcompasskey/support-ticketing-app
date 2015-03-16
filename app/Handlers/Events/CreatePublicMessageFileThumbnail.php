@@ -25,8 +25,10 @@ class CreatePublicMessageFileThumbnail {
      */
     public function handle(PublicMessageFileWasPosted $event)
     {
+        // if the eloquent model is not empty
         if ($event->publicMessageFile->toArray())
         {
+            // if the uploaded file was an image
             if ($event->publicMessageFile->isImage())
             {
                 $storage_file = storage_path() . '/app/' . $event->publicMessageFile->filepath;
