@@ -1,10 +1,9 @@
 <?php namespace App\Events;
 
 use App\Events\Event;
-
 use Illuminate\Queue\SerializesModels;
 
-class PublicMessageFileWasPosted extends Event {
+class PublicMessageFileWasUploaded extends Event {
 
 	use SerializesModels;
 

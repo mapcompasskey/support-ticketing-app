@@ -1,11 +1,11 @@
-<?php namespace App\Handlers\Events;
+<?php namespace App\Handlers\Events\PublicMessageFile;
 
-use App\Events\PublicMessageFileWasPosted;
+use App\Events\PublicMessageFileWasUploaded;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldBeQueued;
 use Intervention\Image\Facades\Image;
 
-class CreatePublicMessageFileThumbnail {
+class CreateThumbnail {
 
     /**
      * Create the event handler.
@@ -20,10 +20,10 @@ class CreatePublicMessageFileThumbnail {
     /**
      * Handle the event.
      *
-     * @param  PublicMessageFileWasPosted  $event
+     * @param  PublicMessageFileWasUploaded  $event
      * @return void
      */
-    public function handle(PublicMessageFileWasPosted $event)
+    public function handle(PublicMessageFileWasUploaded $event)
     {
         // if the eloquent model is not empty
         if ($event->publicMessageFile->toArray())

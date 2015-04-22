@@ -7,7 +7,7 @@ use App\PublicMessageFile;
 use App\Http\Requests\PublicMessageRequest;
 use App\Http\Requests\PublicContactRequest;
 use Illuminate\Support\Facades\Event;
-use App\Events\PublicMessageFileWasPosted;
+use App\Events\PublicMessageFileWasUploaded;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
@@ -46,14 +46,14 @@ class PublicMessagesController extends Controller {
 		if ($request->file('file'))
 		{
 			// save the file into storage and update the eloquent model
-			Event::fire(new PublicMessageFileWasPosted($request->file('file'), $publicMessageFile));
+			Event::fire(new PublicMessageFileWasUploaded($request->file('file'), $publicMessageFile));
 		}
 
 		// add a new public message
 		$message = new PublicMessage($request->all());
 		$ticket->publicMessages()->save($message);
 
-		// add new file
+		// add new file to public message
 		if ($publicMessageFile->toArray())
 		{
 			$message->files()->save($publicMessageFile);
